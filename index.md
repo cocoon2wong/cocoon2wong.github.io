@@ -2,13 +2,13 @@
 layout: page
 title: Project Unpredictable
 subtitle: Exploring the World of Trajectory Prediction.
-cover-img: /subassets/img/pic_main_new.jpeg
+cover-img: ["/subassets/img/pic_main_new.jpeg", "/subassets/img/pic_main_new2.jpeg", "/subassets/img/pic_main_new3.jpeg"]
 ---
 <!--
  * @Author: Conghao Wong
  * @Date: 2023-02-27 09:54:41
  * @LastEditors: Conghao Wong
- * @LastEditTime: 2025-03-31 17:08:28
+ * @LastEditTime: 2025-07-21 11:08:30
  * @Description: file content
  * @Github: https://cocoon2wong.github.io
  * Copyright 2023 Conghao Wong, All Rights Reserved.
