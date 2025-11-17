@@ -1,5 +1,16 @@
 [   
     {
+        "title": "<span class=\"badge bg-secondary badge-custom\">New</span> Reverberation: Learning the Latencies Before Forecasting Trajectories",
+        "authors": "C. Wong, Z. Zou, B. Xia, X. You.",
+        "status": "I",
+        "journal": "arXiv preprint arXiv:2511.11164, 2025",
+        "github": "https://github.com/cocoon2wong/Rev",
+        "arxiv": "https://arxiv.org/abs/2511.11164",
+        "homepage": "https://cocoon2wong.github.io/Rev",
+        "picture": "2025_rev.png",
+        "year": 2025
+    },
+    {
         "title": "<span class=\"badge bg-secondary badge-custom\">New</span> Another Vertical View: A Hierarchical Network for Heterogeneous Trajectory Prediction via Spectrums",
         "authors": "B. Xia, C. Wong, D. Xu, Q. Peng, X. You.",
         "status": "J",
@@ -25,7 +36,7 @@
         "title": "Who Walks With You Matters: Perceiving Social Interactions with Groups for Pedestrian Trajectory Prediction",
         "authors": "Z. Zou, C. Wong, B. Xia, Q. Peng, X. You.",
         "status": "C",
-        "journal": "IEEE/CVF International Conference on Computer Vision 2025 Workshops.",
+        "journal": "IEEE/CVF International Conference on Computer Vision 2025 Workshops",
         "github": "https://github.com/LivepoolQ/GrouPConCeption",
         "arxiv": "https://arxiv.org/abs/2412.02395",
         "homepage": "https://cocoon2wong.github.io/GrouPConCeption",
@@ -36,7 +47,7 @@
         "title": "SocialCircle+: Learning the Angle-based Conditioned Interaction Representation for Pedestrian Trajectory Prediction",
         "authors": "C. Wong, B. Xia, Z. Zou, X. You.",
         "status": "I",
-        "journal": "arXiv preprint arXiv:2409.14984, 2024.",
+        "journal": "arXiv preprint arXiv:2409.14984, 2024",
         "github": "https://github.com/cocoon2wong/SocialCirclePlus",
         "arxiv": "https://arxiv.org/abs/2409.14984",
         "homepage": "https://cocoon2wong.github.io/SocialCirclePlus",
