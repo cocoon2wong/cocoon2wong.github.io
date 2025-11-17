@@ -9,7 +9,7 @@ cover-img: /subassets/img/team/conghaowongback.JPG
  * @Author: Conghao Wong
  * @Date: 2023-03-03 17:44:52
  * @LastEditors: Conghao Wong
- * @LastEditTime: 2025-07-14 12:01:08
+ * @LastEditTime: 2025-11-17 16:39:02
  * @Description: file content
  * @Github: https://cocoon2wong.github.io
  * Copyright 2023 Conghao Wong, All Rights Reserved.
@@ -43,19 +43,58 @@ His research interest includes computer vision and pattern recognition, and he i
 **2019 - 2022:** MS Student,  Huazhong University of Science and Technology  
 **2015 - 2019:** Undergrad Student, China University of Geosciences
 
-### Publications
+### Skills
+
+In addition to reading and writing papers and academic research, I have the following skills:
+
+<details open>
+<summary><strong>📖 Basic research skills</strong></summary>
+
+Use developing tools like Python, PyTorch, TensorFlow, pyqt, maintaining almost all code repos of our researches, where at least 95% of the code was developed by me.
+</details>
+
+<details open>
+<summary><strong>📲 Independent iOS APP development</strong></summary>
+
+Develop independent iOS/iPadOS/macOS APPs using Swift (SwiftUI), like the [Glass Pebble](https://glasspebble.conghaowong.com) inspired by our CVPR 2024 research *SocialCircle* that focuses on the angle-based interaction representation.
+</details>
+
+<details open>
+<summary><strong>🌐 Simple web development</strong></summary>
+
+Develop simple websites, coding simple html and css, like this website (Project Unpredictable).
+</details>
+
+<details open>
+<summary><strong>🎮 Unity indie game development</strong></summary>
+
+Develop indie video games using C#.
+</details>
+
+### Publications & Academic Services
+
+My research is in the area of computer vision and pattern recognition, with a current focus on trajectory prediction (also known as motion prediction/forecasting).
+Details of our publications can be found at [this page](https://cocoon2wong.github.io/publications/).
+Here is the list of all my publications:
+
+<details open>
+<summary><strong>📖 Academic Publications</strong></summary>
+
+- C. Wong, Z. Zou, B. Xia, and X. You.
+  ***Reverberation: Learning the latencies before forecasting trajectories.***
+  arXiv preprint arXiv:2511.11164, 2025.
 
 - B. Xia, C. Wong, Q. Peng, and X. You.
   ***Another vertical view: A hierarchical network for heterogeneous trajectory prediction via spectrums.***
   IEEE Transactions on Pattern Analysis and Machine Intelligence, 2025.
 
-- C. Wong, Z. Zou, B. Xia, and X. You.
+- C. Wong, Z. Zou, and B. Xia.
   ***Resonance: Learning to predict social-aware pedestrian trajectories as co-vibrations.***
-  In Proceedings of the IEEE/CVF International Conference on Computer Vision, 2025.
+  In Proceedings of the IEEE/CVF International Conference on Computer Vision, pages 25788–25799, 2025.
 
-- Z. Zou, C. Wong, B. Xia, Q. Peng, and X. You.
+- Z. Zou, C. Wong, B. Xia, and X. You.
   ***Who walks with you matters: Perceiving social interactions with groups for pedestrian trajectory prediction.***
-  arXiv preprint arXiv:2412.02395, 2024.
+  In Proceedings of the IEEE/CVF International Conference on Computer Vision, pages 4844–4853, 2025.
 
 - C. Wong, B. Xia, Z. Zou, and X. You.
   ***Socialcircle+: Learning the angle-based conditioned interaction representation for pedestrian trajectory prediction.***
@@ -80,3 +119,29 @@ His research interest includes computer vision and pattern recognition, and he i
 - Q. Mou, L. Wei, C. Wang, D. Luo, S. He, J. Zhang, H. Xu, C. Luo, and C. Gao.
   ***Unsupervised domain-adaptive scene-specific pedestrian detection for static video surveillance.***
   Pattern Recognition, page 108038, 2021.
+
+</details>
+
+I have also served as reviewers for several academic conferences or journals:
+
+<details open>
+<summary><strong>🔎 Serve as Reviewers</strong></summary>
+
+#### Conferences
+
+- IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) 2024, 2025, 2026;
+- IEEE/CVF International Conference on Computer Vision (ICCV) 2025;
+- Conference on Neural Information Processing Systems (NeurIPS) 2025, 🏆 NeurIPS 2025 "Reviewer : Top Reviewer";
+- IEEE/CVF Winter Conference on Applications of Computer Vision (WACV) 2026.
+
+#### Journals
+
+- IEEE Transactions on Intelligent Transportation Systems (T-ITS);
+- IEEE Transactions on Intelligent Vehicles (T-IV);
+- IEEE Transactions on Circuits and Systems for Video Technology (TCSVT);
+- IEEE Transactions on Neural Networks and Learning Systems (TNNLS);
+- IEEE Robotics and Automation Letters (RA-L);
+- IEEE Internet of Things Journal;
+- ...
+
+</details>
