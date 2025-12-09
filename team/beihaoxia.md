@@ -8,8 +8,8 @@ cover-img: /subassets/img/team/beihaoxiaback.jpg
 <!--
  * @Author: Conghao Wong
  * @Date: 2023-03-03 17:45:05
- * @LastEditors: Beihao Xia
- * @LastEditTime: 2025-03-21 10:57:53
+ * @LastEditors: Conghao Wong
+ * @LastEditTime: 2025-12-09 10:07:07
  * @Description: file content
  * @Github: https://cocoon2wong.github.io
  * Copyright 2023 Conghao Wong, All Rights Reserved.
@@ -23,7 +23,7 @@ cover-img: /subassets/img/team/beihaoxiaback.jpg
       Huazhong University of Science and Technology
     </p>
     <div>
-      <a class="btn btn-colorful btn-lg" href="mailto:xbh_hust@hust.edu.cn">✉️</a>
+      <a class="btn btn-colorful btn-lg" data-email-id="beihao" data-email-display="icon"></a>
       <a class="btn btn-colorful btn-lg" href="https://github.com/northocean">GitHub</a>
     </div>
   </div>

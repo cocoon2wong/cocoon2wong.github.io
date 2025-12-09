@@ -8,7 +8,7 @@ cover-img: /subassets/img/pic_team.png
  * @Author: Conghao Wong
  * @Date: 2023-02-27 09:54:41
  * @LastEditors: Conghao Wong
- * @LastEditTime: 2025-04-01 15:16:30
+ * @LastEditTime: 2025-12-09 10:07:26
  * @Description: file content
  * @Github: https://cocoon2wong.github.io
  * Copyright 2023 Conghao Wong, All Rights Reserved.
@@ -24,7 +24,7 @@ cover-img: /subassets/img/pic_team.png
       Huazhong University of Science and Technology
     </p>
     <div>
-      <a class="btn btn-colorful btn-lg" href="mailto:xbh_hust@hust.edu.cn">✉️</a>
+      <a class="btn btn-colorful btn-lg" data-email-id="beihao" data-email-display="icon"></a>
       <!-- <a class="btn btn-colorful btn-lg" href="https://github.com/northocean">GitHub</a> -->
       <a class="btn btn-colorful btn-lg" href="/team/beihaoxia">Home page</a>
     </div>
@@ -38,7 +38,7 @@ cover-img: /subassets/img/pic_team.png
         Huazhong University of Science and Technology
       </p>
       <div>
-        <a class="btn btn-colorful btn-lg" href="mailto:conghaowong@icloud.com">✉️</a>
+        <a class="btn btn-colorful btn-lg" data-email-id="conghao" data-email-display="icon"></a>
         <!-- <a class="btn btn-colorful btn-lg" href="https://github.com/cocoon2wong">GitHub</a> -->
         <a class="btn btn-colorful btn-lg" href="/team/conghaowong">Home page</a>
       </div>
@@ -52,7 +52,7 @@ cover-img: /subassets/img/pic_team.png
       Huazhong University of Science and Technology
     </p>
     <div>
-      <a class="btn btn-colorful btn-lg" href="mailto:ziqianzoulive@icloud.com">✉️</a>
+      <a class="btn btn-colorful btn-lg" data-email-id="ziqian" data-email-display="icon"></a>
       <!-- <a class="btn btn-colorful btn-lg" href="https://github.com/LivepoolQ">GitHub</a> -->
       <a class="btn btn-colorful btn-lg" href="/team/ziqianzou">Home page</a>
     </div>

@@ -9,7 +9,7 @@ cover-img: /subassets/img/team/ziqianzouback.jpg
  * @Author: Conghao Wong
  * @Date: 2023-03-03 17:44:52
  * @LastEditors: Conghao Wong
- * @LastEditTime: 2025-03-21 16:32:02
+ * @LastEditTime: 2025-12-09 10:07:52
  * @Description: file content
  * @Github: https://cocoon2wong.github.io
  * Copyright 2023 Conghao Wong, All Rights Reserved.
@@ -23,7 +23,7 @@ cover-img: /subassets/img/team/ziqianzouback.jpg
       Huazhong University of Science and Technology
     </p>
     <div>
-      <a class="btn btn-colorful btn-lg" href="mailto:ziqianzoulive@icloud.com">✉️</a>
+      <a class="btn btn-colorful btn-lg" data-email-id="ziqian" data-email-display="icon"></a>
       <a class="btn btn-colorful btn-lg" href="https://github.com/LivepoolQ">GitHub</a>
     </div>
   </div>
