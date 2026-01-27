@@ -2,7 +2,7 @@
 @Author: Conghao Wong
 @Date: 2024-12-24 15:38:03
 @LastEditors: Conghao Wong
-@LastEditTime: 2025-03-12 17:06:55
+@LastEditTime: 2026-01-27 21:34:32
 @Github: https://cocoon2wong.github.io
 @Copyright 2024 Conghao Wong, All Rights Reserved.
 """
@@ -20,13 +20,13 @@ TARGET_FILE = './publications/index.html'
 
 def load_one_paper(title, authors, status, journal, arxiv, template,
                    github=None, homepage=None, picture=None, **kwargs):
-    
+
     if status == 'I':
-        status = '<span class="badge bg-warning text-dark badge-custom">In progress</span>'
+        status = '<span class="pub-badge pill-surface pub-badge--progress">In progress</span>'
     elif status == 'C':
-        status = '<span class="badge bg-primary badge-custom">Conference</span>'
+        status = '<span class="pub-badge pill-surface pub-badge--conf">Conference</span>'
     elif status == 'J':
-        status = '<span class="badge bg-success badge-custom">Journal</span>'
+        status = '<span class="pub-badge pill-surface pub-badge--journal">Journal</span>'
     else:
         status = ''
 
@@ -39,14 +39,16 @@ def load_one_paper(title, authors, status, journal, arxiv, template,
     picture = '<img src="/subassets/img/publications/{}">'.format(
         picture) if picture else ''
 
-    return template.format(title,
-                           authors,
-                           status,
-                           journal,
-                           github,
-                           arxiv,
-                           homepage,
-                           picture)
+    return template.format(
+        title,
+        authors,
+        journal,
+        status,
+        github,
+        arxiv,
+        homepage,
+        picture,
+    )
 
 
 def read_papers(data_file: str):
@@ -63,13 +65,14 @@ def read_papers(data_file: str):
         year = _dat['year']
         if not year in all_repos.keys():
             all_repos[year] = []
-            
+
         all_repos[year].append(load_one_paper(**_dat, template=template))
 
     for key, value in all_repos.items():
         all_repos[key] = ''.join(value)
-    
+
     return all_repos
+
 
 if __name__ == '__main__':
     papers = read_papers(DATA_FILE_PAPER)
@@ -81,7 +84,7 @@ if __name__ == '__main__':
 
     with open(TARGET_FILE, 'r') as f:
         current_lines = f.readlines()
-    
+
     current_lines = ''.join(current_lines)
     current_lines = current_lines.format(new_line)
 

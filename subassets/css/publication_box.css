@@ -6,7 +6,7 @@ layout: null
  * @Author: Conghao Wong
  * @Date: 2023-10-12 18:43:02
  * @LastEditors: Conghao Wong
- * @LastEditTime: 2025-11-17 14:58:03
+ * @LastEditTime: 2026-01-27 21:41:51
  * @Description: file content
  * @Github: https://cocoon2wong.github.io
  * Copyright 2023 Conghao Wong, All Rights Reserved.
@@ -16,60 +16,154 @@ layout: null
     padding: 10px;
     margin-top: 15px;
     border: 1px solid #c4c6c7a0;
-    border-radius: 15px;
+    border-radius: 28px;
     transition: all 0.2s;
     display: flex;
     align-items: center;
 }
 
 .publication_box:hover {
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
 }
 
 .publication_info_box {
-    margin-left: 15px;
-    margin-bottom: 10px;
     flex: 1;
 }
 
 .publication_title {
-    margin-top: 12px;
-    font-size: 16pt;
+    margin-left: 12px;
+    margin-top: 10px;
+    margin-bottom: 14px;
+    font-size: 18pt;
     font-weight: 800;
-    line-height: 1.1;
+    line-height: 1.22;
+    max-width: 40em;
 }
 
 .publication_author {
-    /* font-size: 12pt; */
+    margin-left: 12px;
+    margin-top: 80px;
     font-weight: normal;
     font-style: italic;
-    margin-top: 10px;
-    margin-bottom: 30px;
+    line-height: 1.4;
 }
 
 .publication_journal {
-    /* margin-top: 10px; */
+    margin-left: 12px;
+    margin-top: 0;
+    margin-bottom: 14px;
     font-size: 12pt;
-    font-weight: normal;
+    line-height: 1.45;
 }
 
+
+.pill-surface {
+    background: #f3f4f68e;
+    border: 0;
+    box-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+.dark-mode .pill-surface {
+    background: #2a2a2a;
+    box-shadow:
+        0 2px 12px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.10);
+}
+
+/* segmented buttons */
 .publication_buttons {
-    margin-top: 20px;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+/* badge */
+.pub-badge {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    padding: 6px 12px;
+    line-height: 1;
+    overflow: visible;
+    font-size: 16px;
+}
+
+/* 组内按钮：贴合、无间距、无独立圆角 */
+.publication_buttons .btn {
+    border-radius: 0 !important;
+    margin-right: 0 !important;
+    box-shadow: none !important;
+
+    border: 0;
+    background: transparent;
+    padding: 5px 8px;
+    font-size: 16px;
+
+    color: #111;
+}
+
+.dark-mode .publication_buttons .btn {
+    color: #fff;
+}
+
+/* 分割线 */
+.publication_buttons .btn {
+    position: relative;
+}
+
+.publication_buttons .btn+.btn::before {
+    content: "";
+    position: absolute;
+
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 1px;
+    height: 55%;
+
+    background: #c4c6c7a0;
+}
+
+.dark-mode .publication_buttons .btn+.btn::before {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* Hover / Active */
+.publication_buttons .btn:hover {
+    background: rgba(0, 0, 0, 0.06);
+}
+
+.dark-mode .publication_buttons .btn:hover {
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.publication_buttons .btn:active {
+    background: rgba(0, 0, 0, 0.10);
+}
+
+.dark-mode .publication_buttons .btn:active {
+    background: rgba(255, 255, 255, 0.10);
 }
 
 .publication_picture {
-    margin-left: auto;
-    margin-right: 15px;
     width: 30%;
-    flex: none;
+    max-height: 250px;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .publication_picture img {
-    max-width: 100%;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    width: auto;
     height: auto;
+    object-fit: contain;
     display: block;
 }
 
@@ -90,4 +184,37 @@ layout: null
 
 .badge-custom {
     border-radius: 1.0em;
+}
+
+/* =========================
+Safari-like pill badge (I/C/J)
+========================= */
+
+.pub-badge--conf {
+    background: rgba(64, 142, 255, 0.92);
+    color: #fff;
+    box-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.pub-badge--journal {
+    background: rgba(40, 167, 69, 0.88);
+    color: #fff;
+    box-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+.pub-badge--progress {
+    background: rgba(255, 205, 60, 0.92);
+    color: #111;
+    box-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.pub-badge,
+.publication_buttons {
+    height: 34px;
 }
