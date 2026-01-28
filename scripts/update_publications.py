@@ -2,7 +2,7 @@
 @Author: Conghao Wong
 @Date: 2024-12-24 15:38:03
 @LastEditors: Conghao Wong
-@LastEditTime: 2026-01-27 21:34:32
+@LastEditTime: 2026-01-28 09:53:45
 @Github: https://cocoon2wong.github.io
 @Copyright 2024 Conghao Wong, All Rights Reserved.
 """
@@ -22,18 +22,18 @@ def load_one_paper(title, authors, status, journal, arxiv, template,
                    github=None, homepage=None, picture=None, **kwargs):
 
     if status == 'I':
-        status = '<span class="pub-badge pill-surface pub-badge--progress">In progress</span>'
+        status = '<span class="pill pill_single pub-badge--progress">In progress</span>'
     elif status == 'C':
-        status = '<span class="pub-badge pill-surface pub-badge--conf">Conference</span>'
+        status = '<span class="pill pill_single pub-badge--conf">Conference</span>'
     elif status == 'J':
-        status = '<span class="pub-badge pill-surface pub-badge--journal">Journal</span>'
+        status = '<span class="pill pill_single pub-badge--journal">Journal</span>'
     else:
         status = ''
 
-    github = '<a class="btn btn-colorful btn-lg" href="{}">GitHub</a>'.format(
+    github = '<a class="pill_item" href="{}">GitHub</a>'.format(
         github) if github else ''
 
-    homepage = '<a class="btn btn-colorful btn-lg" href="{}">Homepage</a>'.format(
+    homepage = '<a class="pill_item" href="{}">Homepage</a>'.format(
         homepage) if homepage else ''
 
     picture = '<img src="/subassets/img/publications/{}">'.format(

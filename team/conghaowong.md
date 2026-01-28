@@ -9,7 +9,7 @@ cover-img: /subassets/img/team/conghaowongback.JPG
  * @Author: Conghao Wong
  * @Date: 2023-03-03 17:44:52
  * @LastEditors: Conghao Wong
- * @LastEditTime: 2025-12-09 10:01:09
+ * @LastEditTime: 2026-01-28 10:29:52
  * @Description: file content
  * @Github: https://cocoon2wong.github.io
  * Copyright 2023 Conghao Wong, All Rights Reserved.
@@ -17,19 +17,19 @@ cover-img: /subassets/img/team/conghaowongback.JPG
 
 <div style="display: flex;">
   <div style="flex-grow: 1;">
-    <p>
-      <h2>Conghao Wong</h2>
-      Ph. D Student <br/>
-      Huazhong University of Science and Technology
-    </p>
-    <div>
-      <a class="btn btn-colorful btn-lg" data-email-id="conghao" data-email-display="icon"></a>
-      <a class="btn btn-colorful btn-lg" href="https://github.com/cocoon2wong">GitHub</a>
-      <a class="btn btn-colorful btn-lg" href="https://conghaowong.com">Home page</a>
-    </div>
+  <p>
+    <h2>Conghao Wong</h2>
+    Ph. D Student <br/>
+    Huazhong University of Science and Technology
+  </p>
+
+  <div class="pill pill_container">
+    <a class="pill_item" data-email-id="conghao" data-email-display="icon"></a>
+    <a class="pill_item" href="https://github.com/cocoon2wong">GitHub</a>
+    <a class="pill_item" href="https://conghaowong.com">Home page</a>
+  </div>
   </div>
   <div>
-    <p></p>
     <img src="/subassets/img/team/conghaowong.png" height=200px>
   </div>
 </div>
