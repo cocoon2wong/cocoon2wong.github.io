@@ -2,7 +2,7 @@
  * @Author: Conghao Wong
  * @Date: 2024-12-24 14:59:43
  * @LastEditors: Conghao Wong
- * @LastEditTime: 2025-04-01 15:08:46
+ * @LastEditTime: 2026-01-29 16:21:06
  * @Github: https://cocoon2wong.github.io
  * Copyright 2024 Conghao Wong, All Rights Reserved.
  */
@@ -13,23 +13,44 @@
     gap: 20px;
 }
 
-.card {
+.repo-container .card {
+    display: flex;
     margin-bottom: 15px;
-    border: 1px solid #c4c6c7a0;
-    border-radius: 15px;
-    transition: all 0.2s;
+    border: 0;
+    background-color: transparent;
     flex: 1 1 calc(50% - 10px);
 }
 
-.card:hover {
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
+.repo-container .card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+
+    border-radius: 27px;    
+    padding: 10px;
+    background: #ffffff;
 }
 
-.dark-mode .card {
+.dark-mode .repo-container .card-body {
     background-color: #2f2f2f;
-    border-color: #2f2f2f;
 }
 
-.dark-mode .card:hover {
-    background-color: #3d3d3d;
+.repo-container .repo-meta {
+    display: flex;
+    gap: 4px;
+}
+
+.repo-container .card-title {
+    margin-top: 10px;
+}
+
+.repo-container .card-title,
+.repo-container .repo-meta,
+.repo-container .card-text {
+    margin-left: 12px;
+}
+
+.repo-container .pill_container {
+    margin-top: auto;
 }

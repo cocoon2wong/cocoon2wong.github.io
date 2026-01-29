@@ -1,10 +1,17 @@
 <div class="card">
-    <div class="card-body">
+    <div class="card-body pill">
         <h5 class="card-title">{}</h5>
-        <iframe src="https://ghbtns.com/github-btn.html?user={}&repo={}&type=star&count=true" frameborder="0" scrolling="0" width="90px" height="20px"></iframe>
-        <iframe src="https://ghbtns.com/github-btn.html?user={}&repo={}&type=fork&count=true" frameborder="0" scrolling="0" width="90px" height="20px"></iframe>
-        <p class="card-text">{}</p>
-        <a href="https://github.com/{}/{}" class="btn btn-colorful">View</a>
-        {}
+
+        <div class="repo-meta">
+            <iframe src="https://ghbtns.com/github-btn.html?user={}&repo={}&type=star&count=true" frameborder="0" scrolling="0" width="90px" height="20px"></iframe>
+            <iframe src="https://ghbtns.com/github-btn.html?user={}&repo={}&type=fork&count=true" frameborder="0" scrolling="0" width="90px" height="20px"></iframe>
+        </div>
+
+        <p class="card-text" markdown="1">{}</p>
+
+        <div class="pill pill_container">
+            <a href="https://github.com/{}/{}" class="pill_item">View</a>
+            {}
+        </div>
     </div>
 </div>

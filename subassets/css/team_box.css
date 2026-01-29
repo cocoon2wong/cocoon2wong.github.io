@@ -2,17 +2,64 @@
  * @Author: Conghao Wong
  * @Date: 2025-04-01 15:14:24
  * @LastEditors: Conghao Wong
- * @LastEditTime: 2025-04-01 15:18:05
+ * @LastEditTime: 2026-01-29 16:42:36
  * @Github: https://cocoon2wong.github.io
  * Copyright 2025 Conghao Wong, All Rights Reserved.
  */
 
 .team-container {
-    display: flex;
-    gap: 30px;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 32px;
+    margin-top: 20px;
 }
 
+/* 核心卡片 */
 .team-card {
-    flex: 1 1 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    background: #ffffff;
+    border-radius: 27px;
+    padding: 10px;
+}
+
+.dark-mode .team-card {
+    background: #2f2f2f;
+}
+
+/* 头像 */
+.team-card img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* 名字 */
+.team-card h3 {
+    margin: 4px 0 0;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/* 身份说明 */
+.team-card p {
+    margin: 0;
+    text-align: center;
+    line-height: 1.5;
+    opacity: .75;
+}
+
+.team-card .pill_container {
+    margin-top: auto;
+    width: 100%;
+    display: flex;
+}
+
+.team-card .pill_container .pill_item {
+    flex: 1;
+    justify-content: center;
+    display: flex;
+    align-items: center;
 }

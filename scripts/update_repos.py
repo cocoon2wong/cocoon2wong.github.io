@@ -2,7 +2,7 @@
 @Author: Conghao Wong
 @Date: 2024-12-24 11:41:22
 @LastEditors: Conghao Wong
-@LastEditTime: 2025-03-12 17:16:51
+@LastEditTime: 2026-01-29 16:06:09
 @Github: https://cocoon2wong.github.io
 @Copyright 2024 Conghao Wong, All Rights Reserved.
 """
@@ -23,7 +23,7 @@ def load_one_repo(display_name: str, desc: str, user: str,
                  repo_name: str, template: str, **kwargs):
     
     if 'homepage' in kwargs.keys():
-        others = '<a href="{}" class="btn btn-colorful">Homepage</a>'
+        others = '<a href="{}" class="pill_item">Homepage</a>'
         others = others.format(kwargs['homepage'])
     else:
         others = ''

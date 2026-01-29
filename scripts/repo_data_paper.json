@@ -1,13 +1,19 @@
 [   
     {
+        "display_name": "Reverberation",
+        "desc": "Code of our paper `Reverberation` (under review).",
+        "user": "cocoon2wong",
+        "repo_name": "Rev"
+    },
+    {
         "display_name": "GrouPConCeption",
-        "desc": "Codes of our paper `GrouPConCeption` (under review).",
+        "desc": "Codes of our paper `GrouPConCeption` (ICCV2025 Workshops).",
         "user": "LivepoolQ",
         "repo_name": "GrouPConCeption"
     },
     {
         "display_name": "Resonance",
-        "desc": "Codes of our paper `Resonance` (under review).",
+        "desc": "Codes of our paper `Resonance` (ICCV2025).",
         "user": "cocoon2wong",
         "repo_name": "Re"
     },
@@ -25,7 +31,7 @@
     },
     {
         "display_name": "E-Vertical",
-        "desc": "Codes of our paper `EV` (under review).",
+        "desc": "Codes of our paper `EV` (TPAMI2025).",
         "user": "cocoon2wong",
         "repo_name": "E-Vertical"
     },
