@@ -25,9 +25,7 @@ page_bg: gray
       Huazhong University of Science and Technology
     </p>
     <div class="pill pill_container">
-      <a class="pill_item" data-email-id="beihao" data-email-display="icon"></a>
-      <a class="pill_item" href="https://github.com/northocean">GitHub</a>
-      <a class="pill_item" href="/team/beihaoxia">CV</a>
+      <a class="pill_item" href="/team/beihaoxia">Statement</a>
     </div>
   </div>
 
