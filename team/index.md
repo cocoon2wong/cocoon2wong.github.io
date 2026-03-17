@@ -9,26 +9,17 @@ page_bg: gray
  * @Author: Conghao Wong
  * @Date: 2023-02-27 09:54:41
  * @LastEditors: Conghao Wong
- * @LastEditTime: 2026-01-29 18:10:02
+ * @LastEditTime: 2026-03-17 17:00:14
  * @Description: file content
  * @Github: https://cocoon2wong.github.io
  * Copyright 2023 Conghao Wong, All Rights Reserved.
 -->
 
+> [!NOTE]
+> Read our statement [here](/team/beihaoxia) about why we removed *Dr. Beihao Xia*.
+
 <link rel="stylesheet" href="/subassets/css/team_box.css">
 <div class="team-container">
-  <div class="team-card pill">
-    <img src='/subassets/img/team/beihaoxia.jpg'  >
-    <h3>Beihao Xia</h3>
-    <p>
-      Ph. D<br/>
-      Huazhong University of Science and Technology
-    </p>
-    <div class="pill pill_container">
-      <a class="pill_item" href="/team/beihaoxia">Statement</a>
-    </div>
-  </div>
-
   <div class="team-card pill">
     <img src='/subassets/img/team/conghaowong.png'>
       <h3>Conghao Wong</h3>
