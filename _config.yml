@@ -313,6 +313,7 @@ exclude:
   - vendor/gems/
   - vendor/ruby/
   - update.sh
+  - scripts/
 
 plugins:
   - jekyll-paginate

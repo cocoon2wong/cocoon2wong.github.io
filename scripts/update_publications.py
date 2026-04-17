@@ -2,14 +2,14 @@
 @Author: Conghao Wong
 @Date: 2024-12-24 15:38:03
 @LastEditors: Conghao Wong
-@LastEditTime: 2026-01-28 09:53:45
+@LastEditTime: 2026-04-17 15:34:27
 @Github: https://cocoon2wong.github.io
 @Copyright 2024 Conghao Wong, All Rights Reserved.
 """
 
+import json
 import os
 import sys
-import json
 
 sys.path.insert(0, os.path.abspath('.'))
 
@@ -18,8 +18,12 @@ TEMPLATE_FILE = './scripts/pub_template.html'
 TARGET_FILE = './publications/index.html'
 
 
-def load_one_paper(title, authors, status, journal, arxiv, template,
-                   github=None, homepage=None, picture=None, **kwargs):
+def load_one_paper(title: str, authors: str,
+                   status: str, journal: str,
+                   template: str,
+                   arxiv: str | None = None, github: str | None = None,
+                   homepage: str | None = None, picture: str | None = None,
+                   **kwargs):
 
     if status == 'I':
         status = '<span class="pill pill_single pub-badge--progress">In progress</span>'
@@ -33,6 +37,9 @@ def load_one_paper(title, authors, status, journal, arxiv, template,
     github = '<a class="pill_item" href="{}">GitHub</a>'.format(
         github) if github else ''
 
+    paper_link = '<a class="pill_item" href="{}">Paper</a>'.format(
+        arxiv) if arxiv else ''
+
     homepage = '<a class="pill_item" href="{}">Homepage</a>'.format(
         homepage) if homepage else ''
 
@@ -45,7 +52,7 @@ def load_one_paper(title, authors, status, journal, arxiv, template,
         journal,
         status,
         github,
-        arxiv,
+        paper_link,
         homepage,
         picture,
     )

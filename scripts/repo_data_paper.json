@@ -1,5 +1,17 @@
 [   
     {
+        "display_name": "Encore",
+        "desc": "Code of our paper `Encore` (under review).",
+        "user": "cocoon2wong",
+        "repo_name": "Encore"
+    },
+    {
+        "display_name": "Socialality",
+        "desc": "Code of our paper `Socialality` (under review).",
+        "user": "LivepoolQ",
+        "repo_name": "Socialality"
+    },
+    {
         "display_name": "Reverberation",
         "desc": "Code of our paper `Reverberation` (under review).",
         "user": "cocoon2wong",

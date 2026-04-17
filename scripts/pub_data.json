@@ -1,5 +1,26 @@
 [   
     {
+        "title": "Encore: Conditioning Trajectory Forecasting via Biased Ego Rehearsals",
+        "authors": "C. Wong, Z. Zou, X. You.",
+        "status": "I",
+        "journal": "",
+        "github": "https://github.com/cocoon2wong/Encore",
+        "arxiv": "",
+        "homepage": "https://cocoon2wong.github.io/Encore",
+        "picture": "0000_WIP.png",
+        "year": 2026
+    },
+    {
+        "title": "Socialality Anchors: Towards Group-bounded Trajectory Prediction",
+        "authors": "Z. Zou, C. Wong, Q. Peng, X. You.",
+        "status": "I",
+        "journal": "",
+        "github": "https://github.com/LivepoolQ/Socialality",
+        "arxiv": "",
+        "picture": "0000_WIP.png",
+        "year": 2026
+    },
+    {
         "title": "Reverberation: Learning the Latencies Before Forecasting Trajectories",
         "authors": "C. Wong, Z. Zou, B. Xia, X. You.",
         "status": "I",
