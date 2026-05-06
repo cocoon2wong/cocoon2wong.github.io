@@ -2,7 +2,7 @@
 @Author: Conghao Wong
 @Date: 2024-12-24 15:38:03
 @LastEditors: Conghao Wong
-@LastEditTime: 2026-04-17 15:34:27
+@LastEditTime: 2026-05-06 10:29:18
 @Github: https://cocoon2wong.github.io
 @Copyright 2024 Conghao Wong, All Rights Reserved.
 """
@@ -21,8 +21,11 @@ TARGET_FILE = './publications/index.html'
 def load_one_paper(title: str, authors: str,
                    status: str, journal: str,
                    template: str,
-                   arxiv: str | None = None, github: str | None = None,
-                   homepage: str | None = None, picture: str | None = None,
+                   submitted: str | None = None,
+                   arxiv: str | None = None,
+                   github: str | None = None,
+                   homepage: str | None = None,
+                   picture: str | None = None,
                    **kwargs):
 
     if status == 'I':
@@ -33,6 +36,9 @@ def load_one_paper(title: str, authors: str,
         status = '<span class="pill pill_single pub-badge--journal">Journal</span>'
     else:
         status = ''
+
+    if submitted:
+        journal = journal + f'<br>{submitted}'
 
     github = '<a class="pill_item" href="{}">GitHub</a>'.format(
         github) if github else ''
