@@ -100,12 +100,14 @@ Here is the list of all my publications:
 - C. Wong, Z. Zou, B. Xia, and X. You.
   ***Reverberation: Learning the latencies before forecasting trajectories.***
   arXiv preprint arXiv:2511.11164, 2025.
+  (Under Review, submitted to IEEE Transactions on Pattern Analysis and Machine Intelligence)
 - B. Xia, C. Wong, Q. Peng, and X. You.
   ***Another vertical view: A hierarchical network for heterogeneous trajectory prediction via spectrums.***
   IEEE Transactions on Pattern Analysis and Machine Intelligence, 2025.
 - C. Wong, B. Xia, Z. Zou, and X. You.
   ***Socialcircle+: Learning the angle-based conditioned interaction representation for pedestrian trajectory prediction.***
   arXiv preprint arXiv:2409.14984, 2024.
+  (Under Review, submitted to IEEE Transactions on Pattern Analysis and Machine Intelligence)
 - C. Wong, B. Xia, Q. Peng, W. Yuan, and X. You.
   ***Msn: multi-style network for trajectory prediction.***
   IEEE Transactions on Intelligent Transportation Systems, 24:9751 – 9766, 2023.
