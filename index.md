@@ -10,7 +10,7 @@ home_fullscreen_sections: true
  * @Author: Conghao Wong
  * @Date: 2023-02-27 09:54:41
  * @LastEditors: Conghao Wong
- * @LastEditTime: 2026-01-29 18:06:56
+ * @LastEditTime: 2026-05-12 17:13:07
  * @Description: file content
  * @Github: https://cocoon2wong.github.io
  * Copyright 2023 Conghao Wong, All Rights Reserved.
@@ -60,9 +60,14 @@ We work on the academic research of pedestrian trajectory prediction.
 Click the following buttons to learn about our publications.
 
 <div class="home-scene-cta">
-    <a class="btn btn-lg btn-normal" href="/team/index">Team</a>
-    <a class="btn btn-lg btn-normal" href="/publications/index">Publications</a>
+  <a class="btn btn-lg btn-normal" href="/team/index">Team</a>
+  <a class="btn btn-lg btn-normal" href="/publications/index">Publications</a>
 </div>
 
   </div>
 </section>
+
+<div style="font-size: 14px; margin: -5px 20px 10px 20px; text-align: center">
+  *Photographs &copy; Conghao Wong.
+  In-game captures from Death Stranding 2: On The Beach.
+</div>
