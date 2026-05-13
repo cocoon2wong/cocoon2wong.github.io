@@ -10,7 +10,7 @@ no-breadcrumbs: true
  * @Author: Conghao Wong
  * @Date: 2023-03-03 16:04:54
  * @LastEditors: Conghao Wong
- * @LastEditTime: 2026-05-13 21:14:00
+ * @LastEditTime: 2026-05-13 21:40:27
  * @Description: file content
  * @Github: https://cocoon2wong.github.io
  * Copyright 2023 Conghao Wong, All Rights Reserved.
@@ -77,12 +77,15 @@ no-breadcrumbs: true
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const itemsPerPage = 5;
-        const items = Array.from(document.querySelectorAll('.pub-item'));
+        const allItems = Array.from(document.querySelectorAll('.pub-item'));
         const years = Array.from(document.querySelectorAll('.pub-year'));
         const paginationContainers = Array.from(document.querySelectorAll('.pagination-controls'));
 
+        let filteredItems = [...allItems];
+        let currentSearchTerm = '';
+
         let currentPage = 1;
-        const totalPages = Math.ceil(items.length / itemsPerPage);
+        let totalPages = Math.ceil(filteredItems.length / itemsPerPage) || 1;
 
         window.goToPage = function (page) {
             if (page < 1 || page > totalPages) return;
@@ -90,17 +93,32 @@ no-breadcrumbs: true
             renderPage(currentPage);
         };
 
+        function filterAndRender() {
+            const term = currentSearchTerm.toLowerCase().trim();
+            if (term === '') {
+                filteredItems = [...allItems];
+            } else {
+                filteredItems = allItems.filter(item => {
+                    return item.innerText.toLowerCase().includes(term);
+                });
+            }
+
+            totalPages = Math.ceil(filteredItems.length / itemsPerPage) || 1;
+            currentPage = 1;
+            renderPage(currentPage);
+        }
+
         function renderPage(page) {
-            items.forEach(item => item.style.display = 'none');
+            allItems.forEach(item => item.style.display = 'none');
             years.forEach(year => year.style.display = 'none');
 
             const start = (page - 1) * itemsPerPage;
             const end = start + itemsPerPage;
-            const currentItems = items.slice(start, end);
+            const currentItems = filteredItems.slice(start, end);
 
             const subtitle = document.getElementById('publication-subtitle');
             if (subtitle) {
-                subtitle.style.display = (page === 1) ? 'block' : 'none';
+                subtitle.style.display = (page === 1 && currentSearchTerm.trim() === '') ? 'block' : 'none';
             }
 
             currentItems.forEach(item => {
@@ -112,19 +130,25 @@ no-breadcrumbs: true
                 }
             });
 
+            const searchInput = document.getElementById('pub-search-input');
+            const isTyping = searchInput && document.activeElement === searchInput;
+
             renderControls();
 
-            window.scrollTo({
-                top: document.getElementById('publication-list').offsetTop - 100,
-                behavior: 'smooth'
-            });
+            if (!isTyping) {
+                const listContainer = document.getElementById('publication-list');
+                if (listContainer) {
+                    window.scrollTo({
+                        top: listContainer.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            }
         }
 
         function renderControls() {
-            if (totalPages <= 1) {
-                paginationContainers.forEach(container => container.innerHTML = '');
-                return;
-            }
+            const existingInput = document.getElementById('pub-search-input');
+            const isFocused = existingInput && document.activeElement === existingInput;
 
             let prevHtml = '';
             if (currentPage > 1) {
@@ -134,15 +158,20 @@ no-breadcrumbs: true
                 </a>`;
             }
 
-            let centerHtml = `<div class="pill pill_container">`;
-            for (let i = 1; i <= totalPages; i++) {
-                if (i === currentPage) {
-                    centerHtml += `<span class="pill_item pill_active">${i}</span>`;
-                } else {
-                    centerHtml += `<a class="pill_item" href="javascript:void(0);" onclick="goToPage(${i})">${i}</a>`;
+            let centerHtml = '';
+            if (totalPages > 1) {
+                centerHtml = `<div class="pill pill_container">`;
+                for (let i = 1; i <= totalPages; i++) {
+                    if (i === currentPage) {
+                        centerHtml += `<span class="pill_item pill_active">${i}</span>`;
+                    } else {
+                        centerHtml += `<a class="pill_item" href="javascript:void(0);" onclick="goToPage(${i})">${i}</a>`;
+                    }
                 }
+                centerHtml += `</div>`;
+            } else if (filteredItems.length === 0) {
+                centerHtml = `<span style="color: #888; font-size: 0.9rem; font-style: italic;">No results found</span>`;
             }
-            centerHtml += `</div>`;
 
             let nextHtml = '';
             if (currentPage < totalPages) {
@@ -154,30 +183,62 @@ no-breadcrumbs: true
 
             paginationContainers.forEach(container => {
                 let titleHtml = '';
-
                 const optionalTitle = container.getAttribute('data-title');
-
                 if (optionalTitle) {
                     titleHtml = `<h2 style="margin: 0;">${optionalTitle}</h2>`;
+                }
+
+                let searchBoxHtml = '';
+                if (container.id === 'pagination-controls-top') {
+                    const safeSearchTerm = currentSearchTerm.replace(/"/g, '&quot;');
+                    searchBoxHtml = `
+                        <input type="text" id="pub-search-input" class="pill pill_container" value="${safeSearchTerm}" placeholder="Search..." 
+                               autocomplete="off"
+                               style="padding: 6px 16px; font-size: 0.9rem; width: 180px; transition: border-color 0.2s;">
+                    `;
                 }
 
                 container.innerHTML = `
                 <div style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
                     
-                    <div class="pagination-left-group">
+                    <div class="pagination-left-group" style="display: flex; align-items: center; gap: 24px;">
                         ${prevHtml}
                         ${titleHtml}
                     </div>
                     
-                    <div class="pagination-right-group">
+                    <div class="pagination-right-group" style="display: flex; align-items: center; gap: 16px;">
+                        ${searchBoxHtml}
                         ${centerHtml}
                         ${nextHtml}
                     </div>
                     
                 </div>`;
             });
+
+            const newSearchInput = document.getElementById('pub-search-input');
+            if (newSearchInput) {
+                if (isFocused) {
+                    newSearchInput.focus();
+                    const val = newSearchInput.value;
+                    newSearchInput.value = '';
+                    newSearchInput.value = val;
+                }
+
+                newSearchInput.addEventListener('input', function(e) {
+                    currentSearchTerm = e.target.value;
+                    filterAndRender();
+                });
+            }
         }
 
         renderPage(currentPage);
     });
 </script>
+
+<style>
+@media (max-width: 768px) {
+    #pub-search-input {
+        display: none !important;
+    }
+}
+</style>
