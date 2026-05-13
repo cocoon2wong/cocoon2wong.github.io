@@ -314,6 +314,11 @@ exclude:
   - vendor/ruby/
   - update.sh
   - scripts/
+  - __data/
+  - __includes/
+  - __layouts/
+  - .vscode/
+  - .github/
 
 plugins:
   - jekyll-paginate
