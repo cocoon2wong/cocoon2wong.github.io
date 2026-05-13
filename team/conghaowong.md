@@ -2,7 +2,7 @@
 layout: page
 title: Conghao Wong
 breadcrumbs: true
-cover-img: /subassets/img/team/conghaowongback.JPG
+cover-img: /assets/img/team/conghaowongback.JPG
 ---
 <!--
  * @Author: Conghao Wong
@@ -30,7 +30,7 @@ cover-img: /subassets/img/team/conghaowongback.JPG
   </div>
   </div>
   <div>
-    <img src="/subassets/img/team/conghaowong.png" height=200px>
+    <img src="/assets/img/team/conghaowong.png" height=200px>
   </div>
 </div>
 

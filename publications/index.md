@@ -2,22 +2,28 @@
 layout: page
 title: Publications
 subtitle: Our Trajectory Prediction Research
-cover-img: /subassets/img/pic_publications.jpeg
+cover-img: /assets/img/pic_publications.jpeg
 page_bg: gray
+no-breadcrumbs: true
 ---
 <!--
  * @Author: Conghao Wong
  * @Date: 2023-03-03 16:04:54
  * @LastEditors: Conghao Wong
- * @LastEditTime: 2026-05-13 10:55:22
+ * @LastEditTime: 2026-05-13 21:14:00
  * @Description: file content
  * @Github: https://cocoon2wong.github.io
  * Copyright 2023 Conghao Wong, All Rights Reserved.
 -->
 
-<link rel="stylesheet" href="/subassets/css/publication_box.css">
+<link rel="stylesheet" href="/assets/css/publication_box.css">
 
 <div id="pagination-controls-top" class="pagination-controls" data-title="Publication List"></div>
+
+<p id="publication-subtitle" markdown="1">
+    We are dedicated to conducting high-quality academic research.
+    Our findings have been published in top-tier international journals and conferences, including the IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI), the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), the IEEE/CVF International Conference on Computer Vision (ICCV), the European Conference on Computer Vision (ECCV), etc.
+</p>
 
 <div id="publication-list">
     {% assign current_year = "" %}
@@ -59,7 +65,7 @@ page_bg: gray
         </div>
         <div class="publication_picture">
             {% if pub.picture and pub.picture != "" %}
-            <img src="/subassets/img/publications/{{ pub.picture }}">
+            <img src="/assets/img/publications/{{ pub.picture }}">
             {% endif %}
         </div>
     </div>
@@ -92,6 +98,11 @@ page_bg: gray
             const end = start + itemsPerPage;
             const currentItems = items.slice(start, end);
 
+            const subtitle = document.getElementById('publication-subtitle');
+            if (subtitle) {
+                subtitle.style.display = (page === 1) ? 'block' : 'none';
+            }
+
             currentItems.forEach(item => {
                 item.style.display = 'flex';
                 const itemYear = item.getAttribute('data-parent-year');
@@ -118,14 +129,9 @@ page_bg: gray
             let prevHtml = '';
             if (currentPage > 1) {
                 prevHtml = `
-                <ul class="pagination blog-pager">
-                    <li class="page-item previous">
-                        <a class="page-link" href="javascript:void(0);" onclick="goToPage(${currentPage - 1})">
-                            <i class="fas fa-arrow-left"></i>
-                            <span class="d-none d-sm-inline-block">Previous</span>
-                        </a>
-                    </li>
-                </ul>`;
+                <a class="btn btn-normal titled-pill-nav" href="javascript:void(0);" onclick="goToPage(${currentPage - 1})">
+                    <i class="fas fa-arrow-left"></i>
+                </a>`;
             }
 
             let centerHtml = `<div class="pill pill_container">`;
@@ -141,14 +147,9 @@ page_bg: gray
             let nextHtml = '';
             if (currentPage < totalPages) {
                 nextHtml = `
-                <ul class="pagination blog-pager">
-                    <li class="page-item next">
-                        <a class="page-link" href="javascript:void(0);" onclick="goToPage(${currentPage + 1})">
-                            <span class="d-none d-sm-inline-block">Next</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </li>
-                </ul>`;
+                <a class="btn btn-theme titled-pill-nav" href="javascript:void(0);" onclick="goToPage(${currentPage + 1})">
+                    <i class="fas fa-arrow-right"></i>
+                </a>`;
             }
 
             paginationContainers.forEach(container => {

@@ -115,5 +115,6 @@ info "Step 3/3: Apply local override folders (if present)"
 sync_dir_overwrite "__includes" "_includes"
 sync_dir_overwrite "__layouts"  "_layouts"
 sync_dir_overwrite "__data" "_data"
+sync_dir_overwrite "__assets" "assets"
 
 info "All done."

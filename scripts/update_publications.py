@@ -2,7 +2,7 @@
 @Author: Conghao Wong
 @Date: 2024-12-24 15:38:03
 @LastEditors: Conghao Wong
-@LastEditTime: 2026-05-06 10:29:18
+@LastEditTime: 2026-05-13 21:14:12
 @Github: https://cocoon2wong.github.io
 @Copyright 2024 Conghao Wong, All Rights Reserved.
 """
@@ -49,7 +49,7 @@ def load_one_paper(title: str, authors: str,
     homepage = '<a class="pill_item" href="{}">Homepage</a>'.format(
         homepage) if homepage else ''
 
-    picture = '<img src="/subassets/img/publications/{}">'.format(
+    picture = '<img src="/assets/img/publications/{}">'.format(
         picture) if picture else ''
 
     return template.format(

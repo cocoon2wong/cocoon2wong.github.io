@@ -2,7 +2,7 @@
 layout: my_home
 title: Project Unpredictable
 # subtitle: Exploring the World of Trajectory Prediction.
-cover-img: ["/subassets/img/home0.jpeg"]
+cover-img: ["/assets/img/home0.jpeg"]
 fullscreen-hero: true
 home_fullscreen_sections: true
 ---
@@ -10,13 +10,13 @@ home_fullscreen_sections: true
  * @Author: Conghao Wong
  * @Date: 2023-02-27 09:54:41
  * @LastEditors: Conghao Wong
- * @LastEditTime: 2026-05-12 17:13:07
+ * @LastEditTime: 2026-05-13 21:13:15
  * @Description: file content
  * @Github: https://cocoon2wong.github.io
  * Copyright 2023 Conghao Wong, All Rights Reserved.
 -->
 
-<section class="home-scene align-right" style="--bg: url('/subassets/img/home1.jpeg');">
+<section class="home-scene align-right" style="--bg: url('/assets/img/home1.jpeg');">
   <div class="home-scene-inner" markdown="1">
 
 ## Unpredictable
@@ -28,7 +28,7 @@ It is a prism of endless ***possibility***, where a single choice can branch out
   </div>
 </section>
 
-<section class="home-scene align-left" style="--bg: url('/subassets/img/home2.jpg');">
+<section class="home-scene align-left" style="--bg: url('/assets/img/home2.jpg');">
   <div class="home-scene-inner" markdown="1">
 
 ## Echoes of the Past
@@ -40,7 +40,7 @@ The future **unfolds** from there.
   </div>
 </section>
 
-<section class="home-scene align-right" style="--bg: url('/subassets/img/home3.jpeg');">
+<section class="home-scene align-right" style="--bg: url('/assets/img/home3.jpeg');">
   <div class="home-scene-inner" markdown="1">
 
 ## Tomorrow
@@ -51,7 +51,7 @@ Yet our place in said future may not be the one we envision.
   </div>
 </section>
 
-<section class="home-scene align-left" style="--bg: url('/subassets/img/home4.jpeg');">
+<section class="home-scene align-left" style="--bg: url('/assets/img/home4.jpeg');">
   <div class="home-scene-inner" markdown="1">
 
 ## Publications

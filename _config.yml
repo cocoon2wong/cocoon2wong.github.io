@@ -121,7 +121,7 @@ url-pretty: "Project Unpredictable"
 excerpt_length: 50
 
 # Whether or not to show an excerpt for every blog post in the feed page
-feed_show_excerpt: true
+feed_show_excerpt: false
 
 # Whether or not to show a list of tags below each post preview in the feed page
 feed_show_tags: true
@@ -181,7 +181,7 @@ button-active-text-color: "#FFFFFF"
 
 # If you have common JavaScript files that should be included in every page, list them here
 site-js:
-  - "/subassets/js/contact.js"
+  - "/assets/js/contact.js"
 
 #################################
 # --- Web Analytics Section --- #
@@ -281,8 +281,8 @@ timezone: "America/Toronto"
 markdown: kramdown
 highlighter: rouge
 permalink: /:year-:month-:day-:title/
-paginate: 5
-paginate_path: "/posts/page:num/"
+# paginate: 5
+# paginate_path: "/posts/page:num/"
 
 kramdown:
   input: GFM
@@ -321,6 +321,7 @@ exclude:
   - vendor/ruby/
   - update.sh
   - scripts/
+  - __assets/
   - __data/
   - __includes/
   - __layouts/
@@ -328,7 +329,7 @@ exclude:
   - .github/
 
 plugins:
-  - jekyll-paginate
+  # - jekyll-paginate
   - jekyll-sitemap
   - jekyll-gfm-admonitions
   - jekyll-optional-front-matter
