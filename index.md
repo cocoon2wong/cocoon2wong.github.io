@@ -10,7 +10,7 @@ home_fullscreen_sections: true
  * @Author: Conghao Wong
  * @Date: 2023-02-27 09:54:41
  * @LastEditors: Conghao Wong
- * @LastEditTime: 2026-05-13 21:13:15
+ * @LastEditTime: 2026-05-14 09:23:05
  * @Description: file content
  * @Github: https://cocoon2wong.github.io
  * Copyright 2023 Conghao Wong, All Rights Reserved.
@@ -67,7 +67,7 @@ Click the following buttons to learn about our publications.
   </div>
 </section>
 
-<div style="font-size: 14px; margin: -5px 20px 10px 20px; text-align: center">
+<div style="font-size: 14px; margin: -5px 0 10px 0; text-align: center">
   *Photographs &copy; Conghao Wong.
   In-game captures from Death Stranding 2: On The Beach.
 </div>

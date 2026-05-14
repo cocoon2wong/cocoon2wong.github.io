@@ -10,11 +10,13 @@ no-breadcrumbs: true
  * @Author: Conghao Wong
  * @Date: 2023-03-03 19:27:32
  * @LastEditors: Conghao Wong
- * @LastEditTime: 2026-05-13 20:31:26
+ * @LastEditTime: 2026-05-14 10:29:18
  * @Description: file content
  * @Github: https://cocoon2wong.github.io
  * Copyright 2023 Conghao Wong, All Rights Reserved.
 -->
+
+<link rel="stylesheet" href="/assets/css/publication_box.css">
 
 <div id="pagination-controls-top" class="pagination-controls" data-title="Publication News"></div>
 
@@ -22,100 +24,57 @@ no-breadcrumbs: true
     Here are the latest updates on our research.
 </p>
 
-<div id="post-list">
-    <ul class="posts-list list-unstyled" role="list">
-      {% for post in site.posts %}
-      <li class="post-preview post-item" style="display: none;">
-        <article>
+<div id="publication-list">
 
-          {%- capture thumbnail -%}
+    {% for post in site.posts %}
+        {%- capture thumbnail -%}
             {% if post.thumbnail-img %}
-              {{ post.thumbnail-img }}
+                {{ post.thumbnail-img }}
             {% elsif post.cover-img %}
-              {% if post.cover-img.first %}
-                {{ post.cover-img[0].first.first }}
-              {% else %}
-                {{ post.cover-img }}
-              {% endif %}
+                {% if post.cover-img.first %}
+                    {{ post.cover-img[0].first.first }}
+                {% else %}
+                    {{ post.cover-img }}
+                {% endif %}
             {% else %}
             {% endif %}
-          {% endcapture %}
-          {% assign thumbnail=thumbnail | strip %}
+        {% endcapture %}
+        {% assign thumbnail=thumbnail | strip %}
 
-          {% if site.feed_show_excerpt == false %}
-          {% if thumbnail != "" %}
-          <div class="post-image post-image-normal">
-            <a href="{{ post.url | absolute_url }}" aria-label="Thumbnail">
-              <img src="{{ thumbnail | absolute_url }}" alt="Post thumbnail">
-            </a>
-          </div>
-          {% endif %}
-          {% endif %}
+        <div class="publication_box pill pub-item post-item">
+            <div class="publication_info_box">
 
-          <a href="{{ post.url | absolute_url }}">
-            {% unless page.hide_post_title %}
-              <h2 class="post-title">{{ post.title | strip_html }}</h2>
-            {% endunless %}
+                <div class="publication_title">
+                    {{ post.subtitle | strip_html }}
+                </div>
 
-            {% if post.subtitle %}
-              <h3 class="post-subtitle">
-              {{ post.subtitle | strip_html }}
-              </h3>
-            {% endif %}
-          </a>
+                {%- if post.author -%}
+                    <div class="publication_author">By {{ post.author | strip_html }}</div>
+                {%- endif -%}
+                
+                <div class="publication_journal">
+                    {% assign date_format = site.date_format | default: "%B %-d, %Y" %}
+                    Posted on {{ post.date | date: date_format }}
+                </div>
+                
+                <a class="btn btn-theme" href="{{ post.url | absolute_url }}">View</a>
 
-          <p class="post-meta">
-            {% if post.author %}
-              <span>By <strong>{{ post.author | strip_html }}.</strong></span>
-            {% endif %}
-            {% assign date_format = site.date_format | default: "%B %-d, %Y" %}
-            Posted on {{ post.date | date: date_format }}.
-          </p>
+                {% if site.feed_show_tags != false and post.tags.size > 0 %}
+                    <div class="pill pill_container">
+                        {% for tag in post.tags %}
+                            <a class="pill_item" href="{{ '/tags' | absolute_url }}#{{- tag -}}">{{- tag -}}</a>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
 
-          {% if thumbnail != "" %}
-          <div class="post-image post-image-small">
-            <a href="{{ post.url | absolute_url }}" aria-label="Thumbnail">
-              <img src="{{ thumbnail | absolute_url }}" alt="Post thumbnail">
-            </a>
-          </div>
-          {% endif %}
-
-          {% unless site.feed_show_excerpt == false %}
-          {% if thumbnail != "" %}
-          <div class="post-image post-image-short">
-            <a href="{{ post.url | absolute_url }}" aria-label="Thumbnail">
-              <img src="{{ thumbnail | absolute_url }}" alt="Post thumbnail">
-            </a>
-          </div>
-          {% endif %}
-
-          <div class="post-entry">
-            {% assign excerpt_length = site.excerpt_length | default: 50 %}
-            {{ post.excerpt | strip_html | truncatewords: excerpt_length }}
-            {% assign excerpt_word_count = post.excerpt | number_of_words %}
-            {% if post.content != post.excerpt or excerpt_word_count > excerpt_length %}
-              <a href="{{ post.url | absolute_url }}" class="post-read-more">[Read&nbsp;More]</a>
-            {% endif %}
-          </div>
-          {% endunless %}
-
-          {% if site.feed_show_tags != false and post.tags.size > 0 %}
-          <div class="blog-tags">
-            <span>Tags:</span>
-            <ul class="d-inline list-inline" role="list">
-              {% for tag in post.tags %}
-              <li class="list-inline-item">
-                <a href="{{ '/tags' | absolute_url }}#{{- tag -}}">{{- tag -}}</a>
-              </li>
-              {% endfor %}
-            </ul>
-          </div>
-          {% endif %}
-
-        </article>
-      </li>
-      {% endfor %}
-    </ul>
+            <div class="publication_picture">
+                {% if thumbnail != "" %}
+                    <img src="{{ thumbnail | absolute_url }}">
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
 </div>
 
 <div id="pagination-controls-bottom" class="pagination-controls"></div>
@@ -124,7 +83,7 @@ no-breadcrumbs: true
     document.addEventListener("DOMContentLoaded", function () {
         const itemsPerPage = 5; 
         
-        const items = Array.from(document.querySelectorAll('.post-item'));
+        const items = Array.from(document.querySelectorAll('.pub-item'));
         const paginationContainers = Array.from(document.querySelectorAll('.pagination-controls'));
 
         let currentPage = 1;
@@ -145,11 +104,11 @@ no-breadcrumbs: true
 
             const subtitle = document.getElementById('post-subtitle');
             if (subtitle) {
-                subtitle.style.display = (page === 1) ? 'block' : 'none';
+                subtitle.style.display = (page === 1) ? 'flex' : 'none';
             }
 
             currentItems.forEach(item => {
-                item.style.display = 'block'; 
+                item.style.display = 'flex'; 
             });
 
             renderControls();

@@ -10,7 +10,7 @@ no-breadcrumbs: true
  * @Author: Conghao Wong
  * @Date: 2023-03-03 16:04:54
  * @LastEditors: Conghao Wong
- * @LastEditTime: 2026-05-13 21:40:27
+ * @LastEditTime: 2026-05-14 10:34:30
  * @Description: file content
  * @Github: https://cocoon2wong.github.io
  * Copyright 2023 Conghao Wong, All Rights Reserved.
@@ -29,46 +29,46 @@ no-breadcrumbs: true
     {% assign current_year = "" %}
 
     {% for pub in site.data.pub_data %}
-    {% if pub.year != current_year %}
-    <h3 class="pub-year" data-year="{{ pub.year }}">{{ pub.year }}</h3>
-    {% assign current_year = pub.year %}
-    {% endif %}
+        {% if pub.year != current_year %}
+            <h3 class="pub-year" data-year="{{ pub.year }}">{{ pub.year }}</h3>
+            {% assign current_year = pub.year %}
+        {% endif %}
 
-    <div class="publication_box pill pub-item" data-parent-year="{{ pub.year }}">
-        <div class="publication_info_box">
-            <div class="publication_title">{{ pub.title }}</div>
-            <div class="publication_author">{{ pub.authors }}</div>
-            <div class="publication_journal">
-                {{ pub.journal }}
-                {% if pub.submitted and pub.submitted != "" %}
-                <br>{{ pub.submitted }}
-                {% endif %}
+        <div class="publication_box pill pub-item" data-parent-year="{{ pub.year }}">
+            <div class="publication_info_box">
+                <div class="publication_title">{{ pub.title }}</div>
+                <div class="publication_author">{{ pub.authors }}</div>
+                <div class="publication_journal">
+                    {{ pub.journal }}
+                    {% if pub.submitted and pub.submitted != "" %}
+                    <br>{{ pub.submitted }}
+                    {% endif %}
+                </div>
+
+                {% case pub.status %}
+                {% when 'I' %}<span class="pill pill_single pub-badge--progress">In progress</span>
+                {% when 'C' %}<span class="pill pill_single pub-badge--conf">Conference</span>
+                {% when 'J' %}<span class="pill pill_single pub-badge--journal">Journal</span>
+                {% endcase %}
+
+                <div class="pill pill_container">
+                    {% if pub.github and pub.github != "" %}
+                        <a class="pill_item" href="{{ pub.github }}">GitHub</a>
+                    {% endif %}
+                    {% if pub.arxiv and pub.arxiv != "" %}
+                        <a class="pill_item" href="{{ pub.arxiv }}">Paper</a>
+                    {% endif %}
+                    {% if pub.homepage and pub.homepage != "" %}
+                        <a class="pill_item" href="{{ pub.homepage }}">Homepage</a>
+                    {% endif %}
+                </div>
             </div>
-
-            {% case pub.status %}
-            {% when 'I' %}<span class="pill pill_single pub-badge--progress">In progress</span>
-            {% when 'C' %}<span class="pill pill_single pub-badge--conf">Conference</span>
-            {% when 'J' %}<span class="pill pill_single pub-badge--journal">Journal</span>
-            {% endcase %}
-
-            <div class="pill pill_container">
-                {% if pub.github and pub.github != "" %}
-                <a class="pill_item" href="{{ pub.github }}">GitHub</a>
-                {% endif %}
-                {% if pub.arxiv and pub.arxiv != "" %}
-                <a class="pill_item" href="{{ pub.arxiv }}">Paper</a>
-                {% endif %}
-                {% if pub.homepage and pub.homepage != "" %}
-                <a class="pill_item" href="{{ pub.homepage }}">Homepage</a>
+            <div class="publication_picture">
+                {% if pub.picture and pub.picture != "" %}
+                    <img src="/assets/img/publications/{{ pub.picture }}">
                 {% endif %}
             </div>
         </div>
-        <div class="publication_picture">
-            {% if pub.picture and pub.picture != "" %}
-            <img src="/assets/img/publications/{{ pub.picture }}">
-            {% endif %}
-        </div>
-    </div>
     {% endfor %}
 </div>
 
@@ -86,6 +86,8 @@ no-breadcrumbs: true
 
         let currentPage = 1;
         let totalPages = Math.ceil(filteredItems.length / itemsPerPage) || 1;
+
+        let isInitialLoad = true;
 
         window.goToPage = function (page) {
             if (page < 1 || page > totalPages) return;
@@ -135,7 +137,7 @@ no-breadcrumbs: true
 
             renderControls();
 
-            if (!isTyping) {
+            if (!isTyping && !isInitialLoad) {
                 const listContainer = document.getElementById('publication-list');
                 if (listContainer) {
                     window.scrollTo({
@@ -144,6 +146,8 @@ no-breadcrumbs: true
                     });
                 }
             }
+
+            isInitialLoad = false;
         }
 
         function renderControls() {
