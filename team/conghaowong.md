@@ -8,7 +8,7 @@ cover-img: /assets/img/team/conghaowongback.JPG
  * @Author: Conghao Wong
  * @Date: 2023-03-03 17:44:52
  * @LastEditors: Conghao Wong
- * @LastEditTime: 2026-01-29 18:22:32
+ * @LastEditTime: 2026-05-14 16:02:39
  * @Description: file content
  * @Github: https://cocoon2wong.github.io
  * Copyright 2023 Conghao Wong, All Rights Reserved.
@@ -97,6 +97,9 @@ Here is the list of all my publications:
 
 #### Journal Papers
 
+- C. Wong, Z. Zou, and X. You.
+  ***Encore: Conditioning Trajectory Forecasting via Biased Ego Rehearsals.***
+  arXiv preprint arXiv:2605.11463, 2026.
 - C. Wong, Z. Zou, B. Xia, and X. You.
   ***Reverberation: Learning the latencies before forecasting trajectories.***
   arXiv preprint arXiv:2511.11164, 2025.
