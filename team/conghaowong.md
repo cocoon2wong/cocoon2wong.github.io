@@ -8,7 +8,7 @@ cover-img: /assets/img/team/conghaowongback.JPG
  * @Author: Conghao Wong
  * @Date: 2023-03-03 17:44:52
  * @LastEditors: Conghao Wong
- * @LastEditTime: 2026-05-14 16:02:39
+ * @LastEditTime: 2026-06-04 15:28:14
  * @Description: file content
  * @Github: https://cocoon2wong.github.io
  * Copyright 2023 Conghao Wong, All Rights Reserved.
@@ -66,9 +66,10 @@ Develop simple websites, coding simple html and css, like this website (Project 
 </details>
 
 <details open markdown="1">
-<summary><strong>🎮 Unity indie game development</strong></summary>
+<summary><strong>🎮 Indie game development</strong></summary>
 
-Develop indie video games using C#.
+Develop indie video games using ~~Unity C#~~ Godot.
+I am now developing the action-adventure role-playing game [Spectral](https://spectral.conghaowong.com).
 </details>
 
 ### Publications & Academic Services
