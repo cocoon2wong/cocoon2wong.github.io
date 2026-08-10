@@ -5,6 +5,9 @@ title: Project Unpredictable
 cover-img: ["/assets/img/home0.jpeg"]
 fullscreen-hero: true
 home_fullscreen_sections: true
+footnotes:
+  - "Photographs &copy; Conghao Wong. In-game captures from <em>Death Stranding 2: On The Beach</em>."
+  - "All image and video materials on this website and in our publications are handcrafted, photographed, or captured in-game. No generative AI was used to produce multimedia content. We strongly oppose the misuse of generative AI multimedia in academic publications and presentations."
 ---
 <!--
  * @Author: Conghao Wong
@@ -67,7 +70,3 @@ Click the following buttons to learn about our publications.
   </div>
 </section>
 
-<div style="font-size: 14px; margin: -5px 0 10px 0; text-align: center">
-  *Photographs &copy; Conghao Wong.
-  In-game captures from Death Stranding 2: On The Beach.
-</div>
