@@ -1,0 +1,441 @@
+---
+/*
+ * @Author: Conghao Wong
+ * @Date: 2026-09-23 15:34:17
+ * @LastEditors: Conghao Wong
+ * @LastEditTime: 2026-09-23 17:04:15
+ * @Github: https://cocoon2wong.github.io
+ * Copyright 2026 Conghao Wong, All Rights Reserved.
+ */
+
+import BaseLayout from "/src/layouts/BaseLayout.astro";
+import SecondNavbar from "/src/components/SecondNavbar.astro";
+import SecondNavButton from "/src/components/SecondNavButton.astro";
+import SecondNavButtonGroup from "/src/components/SecondNavButtonGroup.astro";
+import SecondNavTitle from "/src/components/SecondNavTitle.astro";
+import SecondNavSpacer from "/src/components/SecondNavSpacer.astro";
+import LiquidGlass from "/src/components/LiquidGlass.astro";
+import Pill from "/src/components/Pill.astro";
+import { withBase } from "/src/utils/url";
+
+interface PostFrontmatter {
+  title?: string;
+  subtitle?: string;
+  author?: string;
+  date?: string;
+  tags?: string[];
+  thumbnailImg?: string;
+  coverImg?: string;
+  comments?: boolean;
+}
+
+interface PostModule {
+  frontmatter: PostFrontmatter;
+  url?: string;
+  file?: string;
+}
+
+// 严格从 /src/pages/posts/ 运行时路径使用 import.meta.glob 读取装配后的文章 Markdown
+const postModules = import.meta.glob<PostModule>("/src/pages/posts/*.md", {
+  eager: true,
+});
+
+const posts = Object.entries(postModules)
+  .map(([filePath, module]) => {
+    const fileName = filePath.split("/").pop()?.replace(/\.md$/, "") || "";
+    // 如果文件名形如 YYYY-MM-DD-title，提取日期前缀
+    const dateFromFileName = fileName.slice(0, 10);
+    const fm = module.frontmatter || {};
+    const dateStr = fm.date || dateFromFileName;
+    return {
+      file: filePath,
+      url: module.url || `/posts/${fileName}`,
+      frontmatter: fm,
+      dateStr: dateStr,
+      dateTimestamp: new Date(dateStr).getTime() || 0,
+      fileName: fileName,
+    };
+  })
+  .sort((a, b) => b.dateTimestamp - a.dateTimestamp);
+---
+
+<BaseLayout
+  title="Posts"
+  pageBackground="gray"
+  showBreadcrumbs={false}
+  showTableOfContents={false}
+  customCss={["/assets/css/post_card.css"]}
+>
+  <Fragment slot="secondNav">
+    <SecondNavButton
+      id="post-prev-btn"
+      btnClass="d-none"
+      title="Previous Page"
+      ariaLabel="Previous Page"
+      onclick="window.goToPage && window.goToPage(window.currentPostPage - 1)"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="15"
+        height="15"
+        fill="currentColor"
+        class="bi bi-chevron-left"
+        viewBox="0 0 16 16"
+        aria-hidden="true"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
+        ></path>
+      </svg>
+    </SecondNavButton>
+
+    <SecondNavTitle title="Publication News" />
+
+    <SecondNavSpacer />
+
+    <SecondNavButtonGroup class="pub-search-group">
+      <span
+        class="second-nav-btn-group-item nav-btn"
+        style="pointer-events: none; padding-right: 0;"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="13"
+          height="13"
+          fill="currentColor"
+          class="bi bi-search"
+          viewBox="0 0 16 16"
+          aria-hidden="true"
+        >
+          <path
+            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+          ></path>
+        </svg>
+      </span>
+      <input
+        type="text"
+        id="post-search-input"
+        class="second-nav-search-input"
+        placeholder="Search..."
+        autocomplete="off"
+      />
+    </SecondNavButtonGroup>
+
+    <SecondNavButtonGroup id="post-page-numbers-wrapper">
+      <div
+        id="post-page-numbers-container"
+        style="display: inline-flex; align-items: center; height: 100%;"
+      >
+        <!-- 动态注入按钮项 -->
+      </div>
+    </SecondNavButtonGroup>
+
+    <SecondNavButton
+      id="post-next-btn"
+      title="Next Page"
+      ariaLabel="Next Page"
+      onclick="window.goToPage && window.goToPage(window.currentPostPage + 1)"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="15"
+        height="15"
+        fill="currentColor"
+        class="bi bi-chevron-right"
+        viewBox="0 0 16 16"
+        aria-hidden="true"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+        ></path>
+      </svg>
+    </SecondNavButton>
+  </Fragment>
+
+  <p id="post-subtitle">Here are the latest updates on our research.</p>
+
+  <div id="post-list">
+    {
+      posts.map((post) => {
+        const titleText =
+          post.frontmatter.subtitle || post.frontmatter.title || post.fileName;
+        const tagItems = (post.frontmatter.tags || []).map((tag: string) => ({
+          label: tag,
+          href: withBase(`/tags#${tag}`),
+        }));
+
+        return (
+          <LiquidGlass
+            hoverable
+            class="post-box post-item"
+            themeColor="#ffffff"
+          >
+            <div class="post-margin-container">
+              <div class="post-hbox">
+                <div class="post-main">
+                  <div class="post-info">
+                    <div class="post-title">{titleText}</div>
+                    <div class="post-meta">
+                      {post.frontmatter.author && (
+                        <span>By {post.frontmatter.author} &bull; </span>
+                      )}
+                      <span>Posted on {post.dateStr}</span>
+                    </div>
+                  </div>
+
+                  <div class="post-bottom">
+                    <Pill container variant="theme">
+                      <a href={withBase(post.url)} class="pill-item">
+                        View
+                      </a>
+                    </Pill>
+                    {tagItems.length > 0 && <Pill items={tagItems} />}
+                  </div>
+                </div>
+
+                {post.frontmatter.thumbnailImg && (
+                  <div class="post-picture">
+                    <img
+                      src={withBase(post.frontmatter.thumbnailImg)}
+                      alt={titleText}
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
+          </LiquidGlass>
+        );
+      })
+    }
+  </div>
+
+  <SecondNavbar id="post-bottom-nav" class="pub-bottom-nav">
+    <SecondNavSpacer />
+
+    <SecondNavButton
+      id="post-bottom-prev-btn"
+      title="Previous Page"
+      ariaLabel="Previous Page"
+      onclick="window.goToPage && window.goToPage(window.currentPostPage - 1)"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="15"
+        height="15"
+        fill="currentColor"
+        class="bi bi-chevron-left"
+        viewBox="0 0 16 16"
+        aria-hidden="true"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
+        ></path>
+      </svg>
+    </SecondNavButton>
+
+    <SecondNavButtonGroup id="post-bottom-page-numbers-wrapper">
+      <div
+        id="post-bottom-page-numbers-container"
+        style="display: inline-flex; align-items: center; height: 100%;"
+      >
+        <!-- 动态注入按钮项 -->
+      </div>
+    </SecondNavButtonGroup>
+
+    <SecondNavButton
+      id="post-bottom-next-btn"
+      title="Next Page"
+      ariaLabel="Next Page"
+      onclick="window.goToPage && window.goToPage(window.currentPostPage + 1)"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="15"
+        height="15"
+        fill="currentColor"
+        class="bi bi-chevron-right"
+        viewBox="0 0 16 16"
+        aria-hidden="true"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+        ></path>
+      </svg>
+    </SecondNavButton>
+
+    <SecondNavSpacer />
+  </SecondNavbar>
+</BaseLayout>
+
+<script is:inline>
+  function initPosts() {
+    const itemsPerPage = 6;
+    const allItems = Array.from(document.querySelectorAll(".post-item"));
+    if (allItems.length === 0) return;
+
+    let filteredItems = [...allItems];
+    let currentSearchTerm = "";
+    let currentPage = 1;
+    let totalPages = Math.ceil(filteredItems.length / itemsPerPage) || 1;
+
+    window.currentPostPage = currentPage;
+
+    window.goToPage = function (page) {
+      if (page < 1 || page > totalPages) return;
+      currentPage = page;
+      window.currentPostPage = currentPage;
+      renderPage(currentPage);
+    };
+
+    function filterAndRender() {
+      const term = currentSearchTerm.toLowerCase().trim();
+      if (term === "") {
+        filteredItems = [...allItems];
+      } else {
+        filteredItems = allItems.filter((item) => {
+          return item.innerText.toLowerCase().includes(term);
+        });
+      }
+
+      totalPages = Math.ceil(filteredItems.length / itemsPerPage) || 1;
+      currentPage = 1;
+      window.currentPostPage = 1;
+      renderPage(currentPage);
+    }
+
+    function renderPage(page) {
+      allItems.forEach((item) => (item.style.display = "none"));
+
+      const start = (page - 1) * itemsPerPage;
+      const end = start + itemsPerPage;
+      const currentItems = filteredItems.slice(start, end);
+
+      const subtitle = document.getElementById("post-subtitle");
+      if (subtitle) {
+        subtitle.style.display =
+          page === 1 && currentSearchTerm.trim() === "" ? "block" : "none";
+      }
+
+      currentItems.forEach((item) => {
+        item.style.display = "flex";
+      });
+
+      renderControls();
+    }
+
+    function renderControls() {
+      // 1. 次要导航栏中的前一页按钮
+      const prevBtn = document.getElementById("post-prev-btn");
+      if (prevBtn) {
+        if (currentPage > 1) {
+          prevBtn.classList.remove("d-none");
+        } else {
+          prevBtn.classList.add("d-none");
+        }
+      }
+
+      // 2. 次要导航栏中的后一页按钮
+      const nextBtn = document.getElementById("post-next-btn");
+      if (nextBtn) {
+        if (currentPage < totalPages) {
+          nextBtn.classList.remove("d-none");
+        } else {
+          nextBtn.classList.add("d-none");
+        }
+      }
+
+      // 3. 次要导航栏中的页码按钮组
+      const pageNumbersWrapper = document.getElementById(
+        "post-page-numbers-wrapper",
+      );
+      const pageNumbersContainer = document.getElementById(
+        "post-page-numbers-container",
+      );
+      if (pageNumbersWrapper && pageNumbersContainer) {
+        if (filteredItems.length === 0) {
+          pageNumbersWrapper.style.display = "";
+          pageNumbersContainer.innerHTML =
+            '<span class="second-nav-btn-group-item" style="opacity: 0.6; font-style: italic; font-size: 0.8rem; cursor: default;">No results</span>';
+        } else if (totalPages > 1) {
+          pageNumbersWrapper.style.display = "";
+          let numbersHtml = "";
+          for (let i = 1; i <= totalPages; i++) {
+            const isActive = i === currentPage;
+            numbersHtml += `<button type="button" class="second-nav-btn-group-item ${isActive ? "active" : ""}" onclick="window.goToPage(${i})">${i}</button>`;
+          }
+          pageNumbersContainer.innerHTML = numbersHtml;
+        } else {
+          pageNumbersWrapper.style.display = "none";
+          pageNumbersContainer.innerHTML = "";
+        }
+      }
+
+      // 4. 底部分页次要导航栏同步联动
+      const bottomNav = document.getElementById("post-bottom-nav");
+      const bottomPrevBtn = document.getElementById("post-bottom-prev-btn");
+      const bottomNextBtn = document.getElementById("post-bottom-next-btn");
+      const bottomPageNumbersWrapper = document.getElementById(
+        "post-bottom-page-numbers-wrapper",
+      );
+      const bottomPageNumbersContainer = document.getElementById(
+        "post-bottom-page-numbers-container",
+      );
+
+      if (bottomNav) {
+        bottomNav.style.display = totalPages > 1 ? "flex" : "none";
+      }
+
+      if (totalPages > 1) {
+        // 4.1 底部页码按钮组
+        if (bottomPageNumbersWrapper && bottomPageNumbersContainer) {
+          bottomPageNumbersWrapper.style.display = "";
+          let bottomNumbersHtml = "";
+          for (let i = 1; i <= totalPages; i++) {
+            const isActive = i === currentPage;
+            bottomNumbersHtml += `<button type="button" class="second-nav-btn-group-item ${isActive ? "active" : ""}" onclick="window.goToPage(${i})">${i}</button>`;
+          }
+          bottomPageNumbersContainer.innerHTML = bottomNumbersHtml;
+        }
+
+        // 4.2 底部前一页/后一页按钮状态
+        if (bottomPrevBtn) {
+          if (currentPage > 1) {
+            bottomPrevBtn.classList.remove("d-none");
+          } else {
+            bottomPrevBtn.classList.add("d-none");
+          }
+        }
+        if (bottomNextBtn) {
+          if (currentPage < totalPages) {
+            bottomNextBtn.classList.remove("d-none");
+          } else {
+            bottomNextBtn.classList.add("d-none");
+          }
+        }
+      } else {
+        if (bottomPageNumbersContainer) {
+          bottomPageNumbersContainer.innerHTML = "";
+        }
+      }
+
+      // 5. 绑定搜索输入框事件
+      const searchInput = document.getElementById("post-search-input");
+      if (searchInput && !searchInput.dataset.bound) {
+        searchInput.dataset.bound = "true";
+        searchInput.addEventListener("input", function (e) {
+          currentSearchTerm = e.target.value;
+          filterAndRender();
+        });
+      }
+    }
+
+    renderPage(currentPage);
+  }
+
+  document.addEventListener("DOMContentLoaded", initPosts);
+  document.addEventListener("astro:page-load", initPosts);
+</script>

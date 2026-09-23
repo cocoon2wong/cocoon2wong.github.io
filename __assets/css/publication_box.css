@@ -2,25 +2,78 @@
  * @Author: Conghao Wong
  * @Date: 2023-10-12 18:43:02
  * @LastEditors: Conghao Wong
- * @LastEditTime: 2026-05-14 10:25:50
- * @Description: file content
+ * @LastEditTime: 2026-09-23 17:03:33
  * @Github: https://cocoon2wong.github.io
- * Copyright 2023 Conghao Wong, All Rights Reserved.
+ * Copyright 2026 Conghao Wong, All Rights Reserved.
  */
 
-.publication_box {
-    padding: 10px;
-    margin-top: 15px;
-    margin-bottom: 30px;
+/* ==========================================================================
+   0. 外层列表容器：双列网格
+   ========================================================================== */
 
-    display: flex;
-    align-items: center;
-    border-radius: 27px;
-    background: #fff;
+#publication-list {
+    /* 面板圆角变量挂载在容器上，供自身 gap 与卡片共享继承 */
+    --liquid-glass-radius-inner: var(--standard-content-radius);
+    --liquid-glass-radius-outer: calc(var(--standard-content-radius) + 1px);
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: var(--liquid-glass-radius-outer);
+    align-items: stretch;
 }
 
-.publication_info_box {
+/* 年份标题横跨两列 */
+.pub-year {
+    grid-column: 1 / -1;
+}
+
+/* ==========================================================================
+   1. 外层面板 (.publication_box)
+      LiquidGlass wrapper，设置外部间距，内部布局由 pub-margin-container 接管
+   ========================================================================== */
+
+.publication_box {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==========================================================================
+   2. Margin Container (.pub-margin-container)
+      内边距与 second-navbar 内边距变量保持一致
+   ========================================================================== */
+
+.pub-margin-container {
+    padding: var(--standard-content-margin);
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
     flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==========================================================================
+   3. VBox (.pub-vbox)
+      垂直排列：上方 HBox（信息+图片），下方底部按钮行
+   ========================================================================== */
+
+.pub-vbox {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex: 1;
+    justify-content: space-between;
+}
+
+/* ==========================================================================
+   4. 论文信息区 (.pub-info)
+      全宽，包含标题 / 作者 / 期刊
+   ========================================================================== */
+
+.pub-info {
+    width: 100%;
+    min-width: 0;
 }
 
 .publication_title {
@@ -35,14 +88,10 @@
 
 .publication_author {
     margin-left: 12px;
-    margin-top: 80px;
+    margin-top: 8px;
     font-weight: normal;
     font-style: italic;
     line-height: 1.4;
-}
-
-.publication_box.post-item .publication_author {
-    margin-top: 30px;
 }
 
 .publication_journal {
@@ -53,113 +102,70 @@
     line-height: 1.45;
 }
 
-/* badge */
-.pub-badge {
-    display: inline-flex;
-    align-items: center;
-    border-radius: 999px;
-    padding: 6px 12px;
-    line-height: 1;
-    overflow: visible;
-    font-size: 16px;
-}
+/* ==========================================================================
+   5. 图片区 (.pub-picture)
+      全宽、固定高度 180px，保持比例居中（object-fit: contain）
+      所有卡片图片区高度统一，同行卡片由 grid stretch 保证等高
+   ========================================================================== */
 
-/* 组内按钮：贴合、无间距、无独立圆角 */
-.publication_buttons .btn {
-    border-radius: 0 !important;
-    margin-right: 0 !important;
-    box-shadow: none !important;
-
-    border: 0;
-    background: transparent;
-    padding: 5px 8px;
-    font-size: 16px;
-
-    color: #111;
-}
-
-.dark-mode .publication_buttons .btn {
-    color: #fff;
-}
-
-/* 分割线 */
-.publication_buttons .btn {
-    position: relative;
-}
-
-.publication_buttons .btn+.btn::before {
-    content: "";
-    position: absolute;
-
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-
-    width: 1px;
-    height: 55%;
-
-    background: #c4c6c7a0;
-}
-
-.dark-mode .publication_buttons .btn+.btn::before {
-    background: rgba(255, 255, 255, 0.25);
-}
-
-/* Hover / Active */
-.publication_buttons .btn:hover {
-    background: rgba(0, 0, 0, 0.06);
-}
-
-.dark-mode .publication_buttons .btn:hover {
-    background: rgba(255, 255, 255, 0.07);
-}
-
-.publication_buttons .btn:active {
-    background: rgba(0, 0, 0, 0.10);
-}
-
-.dark-mode .publication_buttons .btn:active {
-    background: rgba(255, 255, 255, 0.10);
-}
-
-.publication_picture {
-    width: 30%;
-    max-height: 250px;
+.pub-picture {
+    width: 100%;
+    height: 180px;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 }
 
-.publication_picture img {
-    max-width: 100% !important;
-    max-height: 100% !important;
+.pub-picture img {
+    max-width: 100%;
+    max-height: 100%;
     width: auto;
     height: auto;
     object-fit: contain;
-    display: block;
+    border-radius: var(--second-navbar-item-radius);
 }
 
-.dark-mode .publication_title,
-.dark-mode .publication_author,
-.dark-mode .publication_journal {
-    color: #FFF;
+/* ==========================================================================
+   7. 底部按钮行 (.pub-bottom)
+      胶囊单按钮（badge）+ 胶囊按钮组（链接），同心几何控制
+   ========================================================================== */
+
+.pub-bottom {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 0;
+    margin-top: 14px;
+    margin-bottom: 0;
 }
 
-.dark-mode .publication_box {
-    background-color: #2f2f2f;
-    border-color: #2f2f2f;
+/* 底部 pill 按钮：使用标准 second-navbar-radius，保持真实 pill 外形 */
+.publication_box .pill-single,
+.publication_box .pill-container {
+    height: calc(var(--second-navbar-radius) * 2);
+    border-radius: var(--second-navbar-radius);
+    box-sizing: border-box;
+    margin: 0;
 }
 
-.badge-custom {
-    border-radius: 1.0em;
+.publication_box .pill-item {
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
 }
 
-/* =========================
-Safari-like pill badge (I/C/J)
-========================= */
+/* ==========================================================================
+   8. Badge 颜色修复 (Conference / Journal / In Progress)
+      使用父选择器 .publication_box 提升特异度，确保覆盖
+      buttons.css 中 .pill-single / .pill-item 的通用颜色规则
+   ========================================================================== */
 
-.pub-badge--conf {
+/* Conference badge — 蓝色 */
+.publication_box .pub-badge--conf.pill-single,
+.publication_box .pub-badge--conf.pill-item {
     background: rgba(64, 142, 255, 0.92);
     color: #fff;
     box-shadow:
@@ -167,7 +173,9 @@ Safari-like pill badge (I/C/J)
         inset 0 1px 0 rgba(255, 255, 255, 0.25);
 }
 
-.pub-badge--journal {
+/* Journal badge — 绿色 */
+.publication_box .pub-badge--journal.pill-single,
+.publication_box .pub-badge--journal.pill-item {
     background: rgba(40, 167, 69, 0.88);
     color: #fff;
     box-shadow:
@@ -175,7 +183,9 @@ Safari-like pill badge (I/C/J)
         inset 0 1px 0 rgba(255, 255, 255, 0.22);
 }
 
-.pub-badge--progress {
+/* In Progress badge — 黄色 */
+.publication_box .pub-badge--progress.pill-single,
+.publication_box .pub-badge--progress.pill-item {
     background: rgba(255, 205, 60, 0.92);
     color: #111;
     box-shadow:
@@ -183,6 +193,86 @@ Safari-like pill badge (I/C/J)
         inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
 
-.publication_box .pill {
-    margin-right: 3px;
+/* badge hover 时保持颜色不受通用 .pill-item:hover 影响 */
+.publication_box .pub-badge--conf.pill-single:hover,
+.publication_box .pub-badge--conf.pill-item:hover {
+    color: #fff;
+}
+
+.publication_box .pub-badge--journal.pill-single:hover,
+.publication_box .pub-badge--journal.pill-item:hover {
+    color: #fff;
+}
+
+.publication_box .pub-badge--progress.pill-single:hover,
+.publication_box .pub-badge--progress.pill-item:hover {
+    color: #111;
+}
+
+/* ==========================================================================
+   9. 暗色模式文字颜色
+   ========================================================================== */
+
+.dark-mode .publication_title,
+.dark-mode .publication_author,
+.dark-mode .publication_journal {
+    color: #FFF;
+}
+
+/* ==========================================================================
+   10. 次要导航栏辅助控件（搜索框 & 标题 label）
+   ========================================================================== */
+
+/* 搜索输入框 */
+.second-nav-search-input {
+    border: none;
+    background: transparent;
+    color: var(--second-nav-color);
+    font-size: 0.85rem;
+    padding: 0 10px 0 2px;
+    outline: none;
+    width: 120px;
+    height: 100%;
+}
+
+.dark-mode .second-nav-search-input {
+    color: var(--second-nav-color-dark);
+}
+
+/* 次导航标题标签（只读，禁止指针事件与 hover 效果） */
+.pub-title-label {
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: default !important;
+}
+
+.pub-title-label:hover {
+    color: var(--second-nav-color) !important;
+    background-color: transparent !important;
+}
+
+.dark-mode .pub-title-label:hover {
+    color: var(--second-nav-color-dark) !important;
+    background-color: transparent !important;
+}
+
+/* ==========================================================================
+   11. 响应式（移动端）
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+    /* 次导航搜索组在小屏隐藏 */
+    .pub-search-group {
+        display: none !important;
+    }
+}
+
+/* ==========================================================================
+   12. 底部页码次要导航栏 (.pub-bottom-nav)
+   ========================================================================== */
+
+.pub-bottom-nav {
+    margin-top: calc(var(--liquid-glass-radius-outer) * 1.5);
+    margin-bottom: 20px;
 }

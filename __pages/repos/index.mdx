@@ -1,0 +1,72 @@
+---
+layout: ../../layouts/BaseLayout.astro
+title: Open Sources
+pageBackground: gray
+showBreadcrumbs: false
+showTableOfContents: false
+customCss:
+  - /assets/css/repo_card.css
+---
+
+import LiquidGlass from "../../components/LiquidGlass.astro";
+import Pill from "../../components/Pill.astro";
+import funcRepos from "/src/data/repo_data_func.json";
+import paperRepos from "/src/data/repo_data_paper.json";
+
+## Functional Repos
+
+Here are additional code repos for training our trajectory prediction models, including the training structure, dataset processings codes, and trajectory visualization codes.
+
+<div class="repo-container">
+  {funcRepos.map((repo) => {
+    const pillItems = [
+      { label: "View", href: `https://github.com/${repo.user}/${repo.repo_name}` },
+      repo.homepage ? { label: "Homepage", href: repo.homepage } : null,
+    ].filter(Boolean);
+
+    return (
+      <LiquidGlass hoverable class="repo-box" themeColor="#ffffff">
+        <div class="repo-margin-container">
+          <div class="repo-vbox">
+            <div class="repo-info">
+              <div class="repo-title">{repo.display_name}</div>
+              <p class="repo-desc">{repo.desc}</p>
+            </div>
+            <div class="repo-bottom">
+              <Pill items={pillItems} />
+            </div>
+          </div>
+        </div>
+      </LiquidGlass>
+    );
+  })}
+</div>
+
+## Paper Repos
+
+Here are all the code repos of our published or in processing (under review) trajectory prediction papers.
+
+<div class="repo-container">
+  {paperRepos.map((repo) => {
+    const pillItems = [
+      { label: "View", href: `https://github.com/${repo.user}/${repo.repo_name}` },
+      repo.homepage ? { label: "Homepage", href: repo.homepage } : null,
+    ].filter(Boolean);
+
+    return (
+      <LiquidGlass hoverable class="repo-box" themeColor="#ffffff">
+        <div class="repo-margin-container">
+          <div class="repo-vbox">
+            <div class="repo-info">
+              <div class="repo-title">{repo.display_name}</div>
+              <p class="repo-desc">{repo.desc}</p>
+            </div>
+            <div class="repo-bottom">
+              <Pill items={pillItems} />
+            </div>
+          </div>
+        </div>
+      </LiquidGlass>
+    );
+  })}
+</div>

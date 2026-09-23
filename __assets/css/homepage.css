@@ -1,0 +1,133 @@
+/*
+ * @Author: Conghao Wong
+ * @Date: 2026-01-27 17:30:40
+ * @LastEditors: Conghao Wong
+ * @LastEditTime: 2026-09-22 21:30:00
+ * @Github: https://cocoon2wong.github.io
+ * Copyright 2026 Conghao Wong, All Rights Reserved.
+ */
+
+/* =====================================================
+   1. Full bleed layout for pages containing home scenes
+   ===================================================== */
+
+body:has(.home-scene) {
+  overflow-x: hidden;
+}
+
+body:has(.home-scene) .main-page-container,
+body:has(.home-scene) #main-layout-container,
+body:has(.home-scene) #dynamic-main-content {
+  max-width: 100% !important;
+  width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+body:has(.home-scene) .main-page-container {
+  padding-bottom: 0;
+}
+
+/* =====================================================
+   2. Fullscreen scenes
+   ===================================================== */
+
+.home-scene {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  background-image: var(--bg);
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+}
+
+/* Alignment */
+.home-scene.align-left {
+  justify-content: flex-start;
+}
+
+.home-scene.align-left .home-scene-inner {
+  margin-left: 0;
+  margin-right: auto;
+  text-align: left;
+}
+
+.home-scene.align-right {
+  justify-content: flex-end;
+}
+
+.home-scene.align-right .home-scene-inner {
+  margin-left: auto;
+  margin-right: 0;
+  text-align: left;
+}
+
+/* Scene Content Box */
+.home-scene-inner {
+  position: relative;
+  z-index: 2;
+  padding-left: clamp(24px, 6vw, 96px);
+  padding-right: clamp(24px, 6vw, 96px);
+  max-width: 900px;
+  width: 100%;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+.home-scene-inner h1 {
+  font-size: clamp(3rem, 6vw, 5rem);
+  text-shadow: 0 0 24px rgba(0, 0, 0, 0.5);
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+  color: #fff;
+  line-height: 1.1;
+}
+
+.home-scene-inner h2 {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  text-shadow: 0 0 24px rgba(0, 0, 0, 0.5);
+  color: #fff;
+  margin-top: 0;
+  margin-bottom: 20px;
+  line-height: 1.15;
+}
+
+.home-scene-inner .page-subheading,
+.home-scene-inner p {
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  text-shadow: 0 0 24px rgba(0, 0, 0, 0.828);
+  color: #fff;
+  line-height: 1.6;
+}
+
+.home-scene-inner strong,
+.home-scene-inner b,
+.home-scene-inner em,
+.home-scene-inner i {
+  color: #fff;
+}
+
+/* Scene CTA buttons */
+.home-scene .home-scene-cta,
+.home-scene .hero-cta {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 1.75rem;
+  margin-bottom: 1.75rem;
+}
+
+.home-scene .home-scene-cta .btn,
+.home-scene .hero-cta .btn {
+  border-radius: 99px;
+  padding-left: 25px;
+  padding-right: 25px;
+  text-shadow: none;
+}

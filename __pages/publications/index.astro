@@ -1,0 +1,430 @@
+---
+/*
+ * @Author: Conghao Wong
+ * @Date: 2023-03-03 16:04:54
+ * @LastEditors: Conghao Wong
+ * @Github: https://cocoon2wong.github.io
+ * Copyright 2023 Conghao Wong, All Rights Reserved.
+ */
+
+import BaseLayout from "/src/layouts/BaseLayout.astro";
+import SecondNavbar from "/src/components/SecondNavbar.astro";
+import SecondNavButton from "/src/components/SecondNavButton.astro";
+import SecondNavButtonGroup from "/src/components/SecondNavButtonGroup.astro";
+import SecondNavTitle from "/src/components/SecondNavTitle.astro";
+import SecondNavSpacer from "/src/components/SecondNavSpacer.astro";
+import LiquidGlass from "/src/components/LiquidGlass.astro";
+import Pill from "/src/components/Pill.astro";
+import pubData from "/src/data/pub_data.json";
+
+interface Publication {
+  title: string;
+  authors: string;
+  status: string;
+  journal: string;
+  submitted?: string;
+  github?: string;
+  arxiv?: string;
+  homepage?: string;
+  picture?: string;
+  year: number;
+}
+
+const publications = (pubData || []) as Publication[];
+
+let lastYear: number | null = null;
+---
+
+<BaseLayout
+  title="Publications"
+  pageBackground="gray"
+  showBreadcrumbs={false}
+  customCss={["/assets/css/publication_box.css"]}
+>
+  <Fragment slot="secondNav">
+    <SecondNavButton
+      id="pub-prev-btn"
+      btnClass="d-none"
+      title="Previous Page"
+      ariaLabel="Previous Page"
+      onclick="window.goToPage && window.goToPage(window.currentPubPage - 1)"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="15"
+        height="15"
+        fill="currentColor"
+        class="bi bi-chevron-left"
+        viewBox="0 0 16 16"
+        aria-hidden="true"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
+        ></path>
+      </svg>
+    </SecondNavButton>
+
+    <SecondNavTitle title="Publication List" />
+
+    <SecondNavSpacer />
+
+    <SecondNavButtonGroup class="pub-search-group">
+      <span
+        class="second-nav-btn-group-item nav-btn"
+        style="pointer-events: none; padding-right: 0;"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="13"
+          height="13"
+          fill="currentColor"
+          class="bi bi-search"
+          viewBox="0 0 16 16"
+          aria-hidden="true"
+        >
+          <path
+            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+          ></path>
+        </svg>
+      </span>
+      <input
+        type="text"
+        id="pub-search-input"
+        class="second-nav-search-input"
+        placeholder="Search..."
+        autocomplete="off"
+      />
+    </SecondNavButtonGroup>
+
+    <SecondNavButtonGroup id="pub-page-numbers-wrapper">
+      <div
+        id="pub-page-numbers-container"
+        style="display: inline-flex; align-items: center; height: 100%;"
+      >
+        <!-- 动态注入按钮项 -->
+      </div>
+    </SecondNavButtonGroup>
+
+    <SecondNavButton
+      id="pub-next-btn"
+      title="Next Page"
+      ariaLabel="Next Page"
+      onclick="window.goToPage && window.goToPage(window.currentPubPage + 1)"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="15"
+        height="15"
+        fill="currentColor"
+        class="bi bi-chevron-right"
+        viewBox="0 0 16 16"
+        aria-hidden="true"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+        ></path>
+      </svg>
+    </SecondNavButton>
+  </Fragment>
+
+  <p id="publication-subtitle">
+    We are dedicated to conducting high-quality academic research. Our findings
+    have been published in top-tier international journals and conferences,
+    including the IEEE Transactions on Pattern Analysis and Machine Intelligence
+    (TPAMI), the IEEE/CVF Conference on Computer Vision and Pattern Recognition
+    (CVPR), the IEEE/CVF International Conference on Computer Vision (ICCV), the
+    European Conference on Computer Vision (ECCV), etc.
+  </p>
+
+  <div id="publication-list">
+    {
+      publications.map((pub) => {
+        const isNewYear = pub.year !== lastYear;
+        if (isNewYear) {
+          lastYear = pub.year;
+        }
+
+        const pillItems = [
+          pub.github ? { label: "GitHub", href: pub.github } : null,
+          pub.arxiv ? { label: "Paper", href: pub.arxiv } : null,
+          pub.homepage ? { label: "Homepage", href: pub.homepage } : null,
+        ].filter(Boolean) as { label: string; href: string }[];
+
+        return (
+          <>
+            {isNewYear && (
+              <h3 class="pub-year" data-year={pub.year}>
+                {pub.year}
+              </h3>
+            )}
+            <LiquidGlass
+              hoverable
+              class="publication_box pub-item"
+              themeColor="#ffffff"
+              data-parent-year={pub.year}
+            >
+              <div class="pub-margin-container">
+                <div class="pub-vbox">
+                  <div class="pub-info">
+                    <div class="publication_title">{pub.title}</div>
+                    <div class="publication_author">{pub.authors}</div>
+                    <div class="publication_journal">
+                      {pub.journal}
+                      {pub.submitted && (
+                        <>
+                          <br />
+                          {pub.submitted}
+                        </>
+                      )}
+                    </div>
+                  </div>
+                  <div class="pub-picture">
+                    <img
+                      src={`/assets/img/publications/${pub.picture}`}
+                      alt={pub.title}
+                    />
+                  </div>
+                  <div class="pub-bottom">
+                    {pub.status === "I" && (
+                      <Pill class="pub-badge--progress">In progress</Pill>
+                    )}
+                    {pub.status === "C" && (
+                      <Pill class="pub-badge--conf">Conference</Pill>
+                    )}
+                    {pub.status === "J" && (
+                      <Pill class="pub-badge--journal">Journal</Pill>
+                    )}
+                    {pillItems.length > 0 && <Pill items={pillItems} />}
+                  </div>
+                </div>
+              </div>
+            </LiquidGlass>
+          </>
+        );
+      })
+    }
+  </div>
+
+  <SecondNavbar id="pub-bottom-nav" class="pub-bottom-nav">
+    <SecondNavSpacer />
+
+    <SecondNavButton
+      id="pub-bottom-prev-btn"
+      title="Previous Page"
+      ariaLabel="Previous Page"
+      onclick="window.goToPage && window.goToPage(window.currentPubPage - 1)"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="15"
+        height="15"
+        fill="currentColor"
+        class="bi bi-chevron-left"
+        viewBox="0 0 16 16"
+        aria-hidden="true"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
+        ></path>
+      </svg>
+    </SecondNavButton>
+
+    <SecondNavButtonGroup id="pub-bottom-page-numbers-wrapper">
+      <div
+        id="pub-bottom-page-numbers-container"
+        style="display: inline-flex; align-items: center; height: 100%;"
+      >
+        <!-- 动态注入按钮项 -->
+      </div>
+    </SecondNavButtonGroup>
+
+    <SecondNavButton
+      id="pub-bottom-next-btn"
+      title="Next Page"
+      ariaLabel="Next Page"
+      onclick="window.goToPage && window.goToPage(window.currentPubPage + 1)"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="15"
+        height="15"
+        fill="currentColor"
+        class="bi bi-chevron-right"
+        viewBox="0 0 16 16"
+        aria-hidden="true"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+        ></path>
+      </svg>
+    </SecondNavButton>
+
+    <SecondNavSpacer />
+  </SecondNavbar>
+</BaseLayout>
+
+<script is:inline>
+  function initPublications() {
+    const itemsPerPage = 5;
+    const allItems = Array.from(document.querySelectorAll(".pub-item"));
+    if (allItems.length === 0) return;
+    const years = Array.from(document.querySelectorAll(".pub-year"));
+
+    let filteredItems = [...allItems];
+    let currentSearchTerm = "";
+    let currentPage = 1;
+    let totalPages = Math.ceil(filteredItems.length / itemsPerPage) || 1;
+
+    window.currentPubPage = currentPage;
+
+    window.goToPage = function (page) {
+      if (page < 1 || page > totalPages) return;
+      currentPage = page;
+      window.currentPubPage = currentPage;
+      renderPage(currentPage);
+    };
+
+    function filterAndRender() {
+      const term = currentSearchTerm.toLowerCase().trim();
+      if (term === "") {
+        filteredItems = [...allItems];
+      } else {
+        filteredItems = allItems.filter((item) => {
+          return item.innerText.toLowerCase().includes(term);
+        });
+      }
+
+      totalPages = Math.ceil(filteredItems.length / itemsPerPage) || 1;
+      currentPage = 1;
+      window.currentPubPage = 1;
+      renderPage(currentPage);
+    }
+
+    function renderPage(page) {
+      allItems.forEach((item) => (item.style.display = "none"));
+      years.forEach((year) => (year.style.display = "none"));
+
+      const start = (page - 1) * itemsPerPage;
+      const end = start + itemsPerPage;
+      const currentItems = filteredItems.slice(start, end);
+
+      const subtitle = document.getElementById("publication-subtitle");
+      if (subtitle) {
+        subtitle.style.display =
+          page === 1 && currentSearchTerm.trim() === "" ? "block" : "none";
+      }
+
+      currentItems.forEach((item) => {
+        item.style.display = "flex";
+        const itemYear = item.getAttribute("data-parent-year");
+        const targetYearHeader = years.find(
+          (y) => y.getAttribute("data-year") === itemYear,
+        );
+        if (targetYearHeader) {
+          targetYearHeader.style.display = "block";
+        }
+      });
+
+      renderControls();
+    }
+
+    function renderControls() {
+      // 1. 次要导航栏中的前一页按钮
+      const prevBtn = document.getElementById("pub-prev-btn");
+      if (prevBtn) {
+        if (currentPage > 1) {
+          prevBtn.classList.remove("d-none");
+        } else {
+          prevBtn.classList.add("d-none");
+        }
+      }
+
+      // 2. 次要导航栏中的后一页按钮
+      const nextBtn = document.getElementById("pub-next-btn");
+      if (nextBtn) {
+        if (currentPage < totalPages) {
+          nextBtn.classList.remove("d-none");
+        } else {
+          nextBtn.classList.add("d-none");
+        }
+      }
+
+      // 3. 次要导航栏中的页码按钮组
+      const pageNumbersWrapper = document.getElementById(
+        "pub-page-numbers-wrapper",
+      );
+      const pageNumbersContainer = document.getElementById(
+        "pub-page-numbers-container",
+      );
+      if (pageNumbersWrapper && pageNumbersContainer) {
+        if (filteredItems.length === 0) {
+          pageNumbersWrapper.style.display = "";
+          pageNumbersContainer.innerHTML =
+            '<span class="second-nav-btn-group-item" style="opacity: 0.6; font-style: italic; font-size: 0.8rem; cursor: default;">No results</span>';
+        } else if (totalPages > 1) {
+          pageNumbersWrapper.style.display = "";
+          let numbersHtml = "";
+          for (let i = 1; i <= totalPages; i++) {
+            const isActive = i === currentPage;
+            numbersHtml += `<button type="button" class="second-nav-btn-group-item ${isActive ? "active" : ""}" onclick="window.goToPage(${i})">${i}</button>`;
+          }
+          pageNumbersContainer.innerHTML = numbersHtml;
+        } else {
+          pageNumbersWrapper.style.display = "none";
+          pageNumbersContainer.innerHTML = "";
+        }
+      }
+
+      // 4. 底部分页次要导航栏同步联动
+      const bottomNav = document.getElementById("pub-bottom-nav");
+      const bottomPrevBtn = document.getElementById("pub-bottom-prev-btn");
+      const bottomNextBtn = document.getElementById("pub-bottom-next-btn");
+      const bottomPageNumbersWrapper = document.getElementById(
+        "pub-bottom-page-numbers-wrapper",
+      );
+      const bottomPageNumbersContainer = document.getElementById(
+        "pub-bottom-page-numbers-container",
+      );
+
+      if (bottomNav) {
+        bottomNav.style.display = totalPages > 1 ? "flex" : "none";
+      }
+
+      if (totalPages > 1) {
+        // 4.1 底部页码按钮组
+        if (bottomPageNumbersWrapper && bottomPageNumbersContainer) {
+          bottomPageNumbersWrapper.style.display = "";
+          let bottomNumbersHtml = "";
+          for (let i = 1; i <= totalPages; i++) {
+            const isActive = i === currentPage;
+            bottomNumbersHtml += `<button type="button" class="second-nav-btn-group-item ${isActive ? "active" : ""}" onclick="window.goToPage(${i})">${i}</button>`;
+          }
+          bottomPageNumbersContainer.innerHTML = bottomNumbersHtml;
+        }
+      } else {
+        if (bottomPageNumbersContainer) {
+          bottomPageNumbersContainer.innerHTML = "";
+        }
+      }
+
+      // 5. 绑定搜索输入框事件
+      const searchInput = document.getElementById("pub-search-input");
+      if (searchInput && !searchInput.dataset.bound) {
+        searchInput.dataset.bound = "true";
+        searchInput.addEventListener("input", function (e) {
+          currentSearchTerm = e.target.value;
+          filterAndRender();
+        });
+      }
+    }
+
+    renderPage(currentPage);
+  }
+
+  document.addEventListener("DOMContentLoaded", initPublications);
+  document.addEventListener("astro:page-load", initPublications);
+</script>

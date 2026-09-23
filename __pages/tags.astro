@@ -1,0 +1,171 @@
+---
+/*
+ * @Author: Conghao Wong
+ * @Date: 2026-09-23 17:17:00
+ * @LastEditors: Conghao Wong
+ * @LastEditTime: 2026-09-23 17:22:29
+ * @Github: https://cocoon2wong.github.io
+ * Copyright 2026 Conghao Wong, All Rights Reserved.
+ */
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SecondNavButtonGroup from "../components/SecondNavButtonGroup.astro";
+import { withBase } from "../utils/url";
+
+const postFiles = import.meta.glob<{
+  frontmatter: Record<string, any>;
+  url?: string;
+}>("/src/pages/posts/*.md", { eager: true });
+
+interface PostItem {
+  title: string;
+  url: string;
+  dateStr: string;
+  timestamp: number;
+}
+
+const tagMap: Record<string, PostItem[]> = {};
+
+for (const [filePath, mod] of Object.entries(postFiles)) {
+  const fileName = filePath.split("/").pop()?.replace(/\.md$/, "") || "";
+  const dateFromFileName = fileName.slice(0, 10);
+  const fm = mod.frontmatter || {};
+  const dateStr = fm.date || dateFromFileName;
+  const postItem: PostItem = {
+    title: fm.subtitle || fm.title || fileName,
+    url: mod.url || `/posts/${fileName}`,
+    dateStr,
+    timestamp: new Date(dateStr).getTime() || 0,
+  };
+
+  const tags: string[] = Array.isArray(fm.tags) ? fm.tags : [];
+  for (const tag of tags) {
+    const trimmedTag = tag.trim();
+    if (!trimmedTag) continue;
+    if (!tagMap[trimmedTag]) {
+      tagMap[trimmedTag] = [];
+    }
+    tagMap[trimmedTag].push(postItem);
+  }
+}
+
+// 标签按字母顺序排序
+const sortedTags = Object.keys(tagMap).sort((a, b) => a.localeCompare(b));
+
+// 针对每个标签，文章按发布日期倒序排序
+for (const tag of sortedTags) {
+  tagMap[tag].sort((a, b) => b.timestamp - a.timestamp);
+}
+---
+
+<BaseLayout
+  title="Tag Index"
+  subtitle="Browse all posts by topic"
+  showTableOfContents={true}
+  showBreadcrumbs={false}
+>
+  <Fragment slot="secondNav">
+    <SecondNavButtonGroup class="tags-second-nav-group">
+      {
+        sortedTags.map((tag) => (
+          <a href={`#${tag}`} class="second-nav-btn-group-item">
+            {tag} ({tagMap[tag].length})
+          </a>
+        ))
+      }
+    </SecondNavButtonGroup>
+  </Fragment>
+
+  <div id="full-tags-list" class="tags-sections-wrapper">
+    {
+      sortedTags.map((tag) => (
+        <section class="tag-section">
+          <h2 id={tag} class="tag-section-heading">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              fill="currentColor"
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+            >
+              <path d="M2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2zm3.5 4a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+              <path d="M1.293 7.707A1 1 0 0 1 1 7V2a2 2 0 0 1 2-2h5a1 1 0 0 1 .707.293l.146.147-.707.707-.146-.147H3a1 1 0 0 0-1 1v5a1 1 0 0 0 .293.707l7 7a1 1 0 0 0 1.414 0l.147-.147-.707-.707-.147.147-7-7z" />
+            </svg>
+            <span>{tag}</span>
+            <span class="tag-heading-count">({tagMap[tag].length})</span>
+          </h2>
+          <div class="tag-post-list">
+            {tagMap[tag].map((post) => (
+              <div class="tag-entry">
+                <a href={withBase(post.url)} class="tag-entry-title">
+                  {post.title}
+                </a>
+                <div class="entry-date">
+                  <time datetime={post.dateStr}>{post.dateStr}</time>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))
+    }
+  </div>
+</BaseLayout>
+
+<style>
+  .tags-sections-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .tag-section-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    scroll-margin-top: 5rem;
+  }
+
+  .tag-heading-count {
+    opacity: 0.65;
+    font-size: 0.8em;
+    font-weight: normal;
+  }
+
+  .tag-post-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-left: 1.5rem;
+  }
+
+  .tag-entry {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .tag-entry-title {
+    font-size: 1.15rem;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .tag-entry-title:hover {
+    text-decoration: underline;
+  }
+
+  .entry-date {
+    color: var(--text-color-light, #6c757d);
+    font-size: 0.875rem;
+    font-style: italic;
+  }
+
+  @media (max-width: 768px) {
+    :global(.tags-second-nav-group) {
+      display: none !important;
+    }
+  }
+</style>

@@ -1,0 +1,49 @@
+---
+layout: ../../layouts/BaseLayout.astro
+title: Team
+pageBackground: gray
+showBreadcrumbs: false
+showTableOfContents: false
+---
+
+import LiquidGlass from "../../components/LiquidGlass.astro";
+import Pill from "../../components/Pill.astro";
+
+## Team Members
+
+<div class="team-container">
+  <LiquidGlass hoverable class="team-card" themeColor="#ffffff">
+    <img src="/assets/img/team/conghaowong.png" alt="Conghao Wong" />
+    <h3>Conghao Wong</h3>
+    <p>
+      Ph. D Student<br />
+      Huazhong University of Science and Technology
+    </p>
+    <Pill
+      items={[
+        { label: "✉️", href: "mailto:conghaowong@icloud.com" },
+        { label: "GitHub", href: "https://github.com/cocoon2wong" },
+        { label: "CV", href: "/team/conghaowong" },
+      ]}
+    />
+  </LiquidGlass>
+
+  <LiquidGlass hoverable class="team-card" themeColor="#ffffff">
+    <img src="/assets/img/team/zzq.jpg" alt="Ziqian Zou" />
+    <h3>Ziqian Zou</h3>
+    <p>
+      Ph. D Student<br />
+      Huazhong University of Science and Technology
+    </p>
+    <Pill
+      items={[
+        { label: "✉️", href: "mailto:ziqianzoulive@icloud.com" },
+        { label: "GitHub", href: "https://github.com/LivepoolQ" },
+        { label: "CV", href: "/team/ziqianzou" },
+      ]}
+    />
+  </LiquidGlass>
+</div>
+
+> [!NOTE]
+> Read our statement [here](/team/beihaoxia) about why we removed *Dr. Beihao Xia*.

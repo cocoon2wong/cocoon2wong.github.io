@@ -1,0 +1,44 @@
+---
+layout: ../../layouts/BaseLayout.astro
+title: Team
+subtitle: Ziqian Zou
+showBreadcrumbs: true
+coverImg: /assets/img/team/ziqianzouback.jpg
+customCss:
+  - /assets/css/team_box.css
+---
+
+import Pill from "../../components/Pill.astro";
+
+<div class="team-profile-header">
+  <div class="team-profile-info">
+    <h2>Ziqian Zou</h2>
+    <p class="team-profile-affiliation">
+      Ph. D Student <br />
+      Huazhong University of Science and Technology
+    </p>
+    <Pill
+      items={[
+        { label: "✉️", href: "mailto:ziqianzoulive@icloud.com" },
+        { label: "GitHub", href: "https://github.com/LivepoolQ" },
+      ]}
+    />
+  </div>
+  <div class="team-profile-avatar">
+    <img src="/assets/img/team/zzq.jpg" alt="Ziqian Zou" />
+  </div>
+</div>
+
+Ziqian Zou is currently a Master's Student in Huazhong University of Science and Technology, Wuhan, Hubei, China.
+He is currently majoring in the field of pedestrian trajectory prediction.
+
+### Education
+
+**2022 - Present:** MS Student, Huazhong University of Science and Technology  
+**2018 - 2022:** Undergrad Student,  Huazhong University of Science and Technology  
+
+### Publications
+
+- C. Wong, B. Xia, Z. Zou, Y. Wang, and X. You.
+  ***SocialCircle: Learning the Angle-based Social Interaction Representation for Pedestrian Trajectory Prediction.***
+  In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, 2024.

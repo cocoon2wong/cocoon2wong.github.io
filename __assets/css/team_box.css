@@ -2,64 +2,90 @@
  * @Author: Conghao Wong
  * @Date: 2025-04-01 15:14:24
  * @LastEditors: Conghao Wong
- * @LastEditTime: 2026-01-29 16:42:36
+ * @LastEditTime: 2026-09-23 11:13:59
  * @Github: https://cocoon2wong.github.io
- * Copyright 2025 Conghao Wong, All Rights Reserved.
+ * Copyright 2026 Conghao Wong, All Rights Reserved.
  */
 
 .team-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 32px;
-    margin-top: 20px;
+  --liquid-glass-radius-inner: var(--standard-content-radius);
+  --liquid-glass-radius-outer: calc(var(--standard-content-radius) + 1px);
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--liquid-glass-radius-outer);
+  margin-top: 20px;
 }
 
-/* 核心卡片 */
+/* 核心卡片：紧凑排列，消除拉伸留白 */
 .team-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 14px;
-    background: #ffffff;
-    border-radius: 27px;
-    padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
 }
 
-.dark-mode .team-card {
-    background: #2f2f2f;
-}
-
-/* 头像 */
+/* 头像与文字 */
 .team-card img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
 }
 
-/* 名字 */
 .team-card h3 {
-    margin: 4px 0 0;
-    font-size: 20px;
-    font-weight: 700;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
 }
 
-/* 身份说明 */
 .team-card p {
-    margin: 0;
-    text-align: center;
-    line-height: 1.5;
-    opacity: .75;
+  margin: 0;
+  text-align: center;
+  line-height: 1.35;
+  font-size: 14px;
+  opacity: .75;
 }
 
-.team-card .pill_container {
-    margin-top: auto;
-    width: 100%;
-    display: flex;
+/* 卡片底部的胶囊按钮定位：紧随文字下方 */
+.team-card .pill-container {
+  margin-top: 4px;
 }
 
-.team-card .pill_container .pill_item {
-    flex: 1;
-    justify-content: center;
-    display: flex;
-    align-items: center;
+/* 简历详情页顶部个人信息区域 */
+.team-profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.team-profile-info {
+  flex: 1;
+}
+
+.team-profile-info h2 {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.team-profile-affiliation {
+  margin: 0 0 12px 0;
+  line-height: 1.4;
+  opacity: .8;
+}
+
+.team-profile-avatar img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .team-profile-header {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
 }

@@ -1,0 +1,113 @@
+---
+/*
+ * @Author: Conghao Wong
+ * @Date: 2023-02-27 09:54:41
+ * @LastEditors: Conghao Wong
+ * @LastEditTime: 2026-09-23 17:46:02
+ * @Github: https://cocoon2wong.github.io
+ * Copyright 2026 Conghao Wong, All Rights Reserved.
+ */
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { withBase } from "../utils/url";
+
+const footnotes = [
+  "Photographs &copy; Conghao Wong. In-game captures from <em>Death Stranding 2: On The Beach</em>.",
+  "All image and video materials on this website and in our publications are handcrafted, photographed, or captured in-game. No generative AI was used to produce multimedia content. We strongly oppose the misuse of generative AI multimedia in academic publications and presentations.",
+];
+---
+
+<BaseLayout
+  title="Project Unpredictable"
+  coverImg={withBase("/assets/img/home0.jpeg")}
+  navMode="short-permanent"
+  hideTitle={true}
+  showBreadcrumbs={false}
+  showTableOfContents={false}
+  footnotes={footnotes}
+>
+  <!-- Hero Section -->
+  <section
+    class="home-scene align-left"
+    style={`--bg: url('${withBase("/assets/img/home0.jpeg")}');`}
+  >
+    <div class="home-scene-inner">
+      <h1>Project Unpredictable</h1>
+      <div class="hero-cta">
+        <a class="btn btn-lg btn-normal" href={withBase("/team")}>Team</a>
+        <a class="btn btn-lg btn-normal" href={withBase("/publications")}
+          >Publications</a
+        >
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 1: Unpredictable -->
+  <section
+    class="home-scene align-right"
+    style={`--bg: url('${withBase("/assets/img/home1.jpeg")}');`}
+  >
+    <div class="home-scene-inner">
+      <h2>Unpredictable</h2>
+      <p>
+        Time. Space. Reality.<br />
+        It is more than a <strong><em>linear path</em></strong>.<br />
+        It is a prism of endless <strong><em>possibility</em></strong>, where a
+        single choice can branch out into infinite realities, creating <strong
+          ><em>alternate worlds</em></strong
+        > from the ones you know.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section 2: Echoes of the Past -->
+  <section
+    class="home-scene align-left"
+    style={`--bg: url('${withBase("/assets/img/home2.jpg")}');`}
+  >
+    <div class="home-scene-inner">
+      <h2>Echoes of the Past</h2>
+      <p>
+        The past leaves <strong><em>echoes</em></strong>.<br />
+        The present <strong><em>interprets</em></strong> them.<br />
+        The future <strong>unfolds</strong> from there.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section 3: Tomorrow -->
+  <section
+    class="home-scene align-right"
+    style={`--bg: url('${withBase("/assets/img/home3.jpeg")}');`}
+  >
+    <div class="home-scene-inner">
+      <h2>Tomorrow</h2>
+      <p>
+        To live is to imagine ourselves in the future, and there we inevitably
+        arrive.<br />
+        Yet our place in said future may not be the one we envision.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section 4: Publications -->
+  <section
+    class="home-scene align-left"
+    style={`--bg: url('${withBase("/assets/img/home4.jpeg")}');`}
+  >
+    <div class="home-scene-inner">
+      <h2>Publications</h2>
+      <p>
+        We work on the academic research of pedestrian trajectory prediction.<br
+        />
+        Click the following buttons to learn about our publications.
+      </p>
+      <div class="home-scene-cta">
+        <a class="btn btn-lg btn-normal" href={withBase("/team")}>Team</a>
+        <a class="btn btn-lg btn-normal" href={withBase("/publications")}
+          >Publications</a
+        >
+      </div>
+    </div>
+  </section>
+</BaseLayout>

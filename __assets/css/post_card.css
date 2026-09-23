@@ -1,132 +1,155 @@
 /*
  * @Author: Conghao Wong
- * @Date: 2024-12-24 14:59:43
+ * @Date: 2026-09-23 15:42:06
  * @LastEditors: Conghao Wong
- * @LastEditTime: 2026-09-23 17:03:49
+ * @LastEditTime: 2026-09-23 17:03:15
  * @Github: https://cocoon2wong.github.io
- * Copyright 2024 Conghao Wong, All Rights Reserved.
+ * Copyright 2026 Conghao Wong, All Rights Reserved.
  */
 
+
 /* ==========================================================================
-   0. 外层列表容器：三列网格（至多 3 列，卡片等高，继承 publication box 圆角变量）
+   0. 文章列表外层容器：单列垂直堆叠，每行占满全宽
    ========================================================================== */
 
-.repo-container {
+#post-list {
     --liquid-glass-radius-inner: var(--standard-content-radius);
     --liquid-glass-radius-outer: calc(var(--standard-content-radius) + 1px);
 
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    display: flex;
+    flex-direction: column;
     gap: var(--liquid-glass-radius-outer);
-    align-items: stretch;
+    width: 100%;
     margin-bottom: 30px;
 }
 
-@media (min-width: 992px) {
-    .repo-container {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
 /* ==========================================================================
-   1. 外层面板 (.repo-box)
-      LiquidGlass wrapper，等高自适应
+   1. 外层面板 (.post-box)
+      LiquidGlass wrapper，占满单行全宽
    ========================================================================== */
 
-.repo-box {
+.post-box {
+    width: 100%;
     margin: 0;
     display: flex;
     flex-direction: column;
-    height: 100%;
 }
 
 /* ==========================================================================
-   2. Margin Container (.repo-margin-container)
-      内边距与 publication_box / second-navbar 规范保持一致 (8px)
+   2. Margin Container (.post-margin-container)
+      内边距与 standard-content-margin 规范保持一致
    ========================================================================== */
 
-.repo-margin-container {
+.post-margin-container {
     padding: var(--standard-content-margin);
     box-sizing: border-box;
     width: 100%;
-    height: 100%;
-    flex: 1;
     display: flex;
     flex-direction: column;
 }
 
 /* ==========================================================================
-   3. VBox (.repo-vbox)
-      垂直排列：上方信息区，下方底部按钮行
+   3. 顶级横向排版容器 (.post-hbox)：左主体内容，右小尺寸缩略图
    ========================================================================== */
 
-.repo-vbox {
+.post-hbox {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 16px;
+}
+
+/* 左侧主体内容区 */
+.post-main {
+    flex: 1;
+    min-width: 0;
     display: flex;
     flex-direction: column;
-    width: 100%;
-    flex: 1;
     justify-content: space-between;
 }
 
-/* ==========================================================================
-   4. 信息区 (.repo-info, .repo-title, .repo-meta, .repo-desc)
-   ========================================================================== */
-
-.repo-info {
+.post-info {
     width: 100%;
-    min-width: 0;
 }
 
-.repo-title {
+.post-title {
     margin-left: 12px;
-    margin-top: 10px;
-    margin-bottom: 8px;
-    font-size: 14pt;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    font-size: 15pt;
     font-weight: 800;
     line-height: 1.25;
 }
 
-.repo-meta {
+.post-meta {
     margin-left: 12px;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 11pt;
+    line-height: 1.4;
+    opacity: 0.85;
 }
 
-.repo-desc {
-    margin-left: 12px;
-    margin-right: 12px;
-    margin-top: 0;
-    margin-bottom: 14px;
-    font-size: 10.5pt;
-    line-height: 1.45;
+/* 右侧缩略图：完全撑满 HBox 高度，保持直角 */
+.post-picture {
+    align-self: stretch;
+    width: 200px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 0;
+}
+
+.post-picture img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+    border-radius: 0;
+}
+
+/* 宽屏模式：增加图片区域允许宽度 */
+@media (min-width: 1200px) {
+    .post-picture {
+        width: 260px;
+    }
+}
+
+/* 手机模式：完全隐藏图片区域 */
+@media (max-width: 768px) {
+    .post-picture {
+        display: none;
+    }
 }
 
 /* ==========================================================================
-   5. 底部按钮行 (.repo-bottom)
+   4. 底部按钮行 (.post-bottom)
       同心几何控制，高度严格等于 2 * second-navbar-radius
    ========================================================================== */
 
-.repo-bottom {
+.post-bottom {
     display: flex;
     width: 100%;
     align-items: center;
     justify-content: flex-start;
     margin-left: 0;
-    margin-top: 14px;
+    margin-top: auto;
     margin-bottom: 0;
+    gap: 8px;
 }
 
-.repo-box .pill-single,
-.repo-box .pill-container {
+.post-box .pill-single,
+.post-box .pill-container {
     height: calc(var(--second-navbar-radius) * 2);
     border-radius: var(--second-navbar-radius);
     box-sizing: border-box;
     margin: 0;
 }
 
-.repo-box .pill-item {
+.post-box .pill-item {
     height: 100%;
     display: inline-flex;
     align-items: center;
