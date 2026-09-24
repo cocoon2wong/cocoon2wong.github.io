@@ -2,7 +2,7 @@
  * @Author: Conghao Wong
  * @Date: 2026-01-27 17:30:40
  * @LastEditors: Conghao Wong
- * @LastEditTime: 2026-09-22 21:30:00
+ * @LastEditTime: 2026-09-24 15:29:19
  * @Github: https://cocoon2wong.github.io
  * Copyright 2026 Conghao Wong, All Rights Reserved.
  */
@@ -11,13 +11,17 @@
    1. Full bleed layout for pages containing home scenes
    ===================================================== */
 
-body:has(.home-scene) {
+body:has(.home-scene),
+body:has(.hero-scene) {
   overflow-x: hidden;
 }
 
 body:has(.home-scene) .main-page-container,
 body:has(.home-scene) #main-layout-container,
-body:has(.home-scene) #dynamic-main-content {
+body:has(.home-scene) #dynamic-main-content,
+body:has(.hero-scene) .main-page-container,
+body:has(.hero-scene) #main-layout-container,
+body:has(.hero-scene) #dynamic-main-content {
   max-width: 100% !important;
   width: 100% !important;
   padding-left: 0 !important;
@@ -26,7 +30,8 @@ body:has(.home-scene) #dynamic-main-content {
   margin-right: 0 !important;
 }
 
-body:has(.home-scene) .main-page-container {
+body:has(.home-scene) .main-page-container,
+body:has(.hero-scene) .main-page-container {
   padding-bottom: 0;
 }
 
@@ -131,3 +136,73 @@ body:has(.home-scene) .main-page-container {
   padding-right: 25px;
   text-shadow: none;
 }
+
+/* =====================================================
+   Hero Scene (独立体系，不接受常规 home-scene 调节)
+   ===================================================== */
+
+.hero-scene {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+}
+
+/* Light 模式：白色背景 */
+html:not(.dark-mode) .hero-scene {
+  background-color: #ffffff;
+}
+
+/* Dark 模式：灰色背景 */
+html.dark-mode .hero-scene {
+  background-color: #3a3a3c;
+}
+
+.hero-scene-inner {
+  position: relative;
+  padding-left: clamp(24px, 6vw, 96px);
+  padding-right: clamp(24px, 6vw, 96px);
+  max-width: 1200px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+/* 文字居中放大，文字本身用现在的背景图片填充 */
+.hero-scene-inner h1 {
+  font-size: clamp(4rem, 8vw, 6rem);
+  text-align: center;
+  text-shadow: none;
+  background-image: var(--bg);
+  background-size: cover;
+  background-position: center;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+  line-height: 1.1;
+}
+
+/* 下方按钮：完全继承原按钮现有显示规则，样式不动 */
+.hero-scene .hero-cta {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 1.75rem;
+  margin-bottom: 1.75rem;
+}
+
+.hero-scene .hero-cta .btn {
+  border-radius: 99px;
+  padding-left: 25px;
+  padding-right: 25px;
+  text-shadow: none;
+}
+

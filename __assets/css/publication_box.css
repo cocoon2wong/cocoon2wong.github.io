@@ -17,7 +17,7 @@
     --liquid-glass-radius-outer: calc(var(--standard-content-radius) + 1px);
 
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 500px), 1fr));
     gap: var(--liquid-glass-radius-outer);
     align-items: stretch;
 }
@@ -265,6 +265,32 @@
     /* 次导航搜索组在小屏隐藏 */
     .pub-search-group {
         display: none !important;
+    }
+
+    /* 移动端列表强制单列，防止极端情况下超出屏幕 */
+    #publication-list {
+        grid-template-columns: 1fr;
+    }
+
+    /* 图片区域高度自适应，并防止 flex 子元素溢出 */
+    .pub-picture {
+        height: clamp(130px, 36vw, 180px);
+        width: 100%;
+        min-width: 0;
+    }
+
+    /* 防止 flex 容器被子内容撑破 */
+    .pub-vbox,
+    .pub-margin-container,
+    .publication_box {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    /* 底部栏允许折行，避免窄屏下徽章与按钮组产生横向挤出 */
+    .pub-bottom {
+        flex-wrap: wrap;
+        gap: 8px;
     }
 }
 
