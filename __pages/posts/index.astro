@@ -3,20 +3,20 @@
  * @Author: Conghao Wong
  * @Date: 2026-09-23 15:34:17
  * @LastEditors: Conghao Wong
- * @LastEditTime: 2026-09-29 09:25:19
+ * @LastEditTime: 2026-10-15 15:29:50
  * @Github: https://cocoon2wong.github.io
  * Copyright 2026 Conghao Wong, All Rights Reserved.
  */
 
-import BaseLayout from "/src/layouts/BaseLayout.astro";
-import SecondNavbar from "/src/components/SecondNavbar.astro";
-import SecondNavButton from "/src/components/SecondNavButton.astro";
-import SecondNavButtonGroup from "/src/components/SecondNavButtonGroup.astro";
-import SecondNavTitle from "/src/components/SecondNavTitle.astro";
-import SecondNavSpacer from "/src/components/SecondNavSpacer.astro";
-import LiquidGlass from "/src/components/LiquidGlass.astro";
-import Pill from "/src/components/Pill.astro";
-import { withBase } from "/src/utils/url";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import SecondNavbar from "@/components/SecondNavbar.astro";
+import SecondNavButton from "@/components/SecondNavButton.astro";
+import SecondNavButtonGroup from "@/components/SecondNavButtonGroup.astro";
+import SecondNavTitle from "@/components/SecondNavTitle.astro";
+import SecondNavSpacer from "@/components/SecondNavSpacer.astro";
+import LiquidGlass from "@/components/LiquidGlass.astro";
+import Pill from "@/components/Pill.astro";
+import { withBase } from "@/utils/url";
 
 interface PostFrontmatter {
   title?: string;
@@ -35,10 +35,13 @@ interface PostModule {
   file?: string;
 }
 
-// 严格从 /src/pages/posts/ 运行时路径使用 import.meta.glob 读取装配后的文章 Markdown
-const postModules = import.meta.glob<PostModule>("/src/pages/posts/*.md", {
-  eager: true,
-});
+// 严格从 @/pages/posts/ 运行时路径使用 import.meta.glob 读取装配后的文章 Markdown
+const postModules = import.meta.glob<PostModule>(
+  "@/pages/posts/*.{md,mdx,astro}",
+  {
+    eager: true,
+  }
+);
 
 const posts = Object.entries(postModules)
   .map(([filePath, module]) => {
@@ -181,19 +184,28 @@ const posts = Object.entries(postModules)
                       {post.frontmatter.author && (
                         <span>By {post.frontmatter.author} &bull; </span>
                       )}
+                      {tagItems.length > 0 && (
+                        <span>
+                          {" "} Tags:{" "}
+                          {tagItems.map((item, index) => (
+                            <span>
+                              <a href={item.href}>{item.label}</a>
+                              {index < tagItems.length - 1 && ", "}
+                            </span>
+                          ))}
+                          {" "} &bull; {" "}
+                        </span>
+                      )}
                       <span>Posted on {post.dateStr}</span>
                     </div>
                   </div>
-
                   <div class="post-bottom">
                     <Pill variant="theme" items={[{
-                      label: "Details",
+                      label: "View Details",
                       href: withBase(post.url),
                     }]}/>
-                    {tagItems.length > 0 && <Pill items={tagItems} />}
                   </div>
                 </div>
-
                 {post.frontmatter.thumbnailImg && (
                   <div class="post-picture">
                     <img

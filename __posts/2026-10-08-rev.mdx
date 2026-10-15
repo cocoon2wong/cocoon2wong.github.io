@@ -1,28 +1,21 @@
 ---
 layout: ../../layouts/PostLayout.astro
-title: Posts
+title: Postscript
 author: Conghao Wong
 subtitle: "Reverberation: Behind the Echoes"
 tags: [posts]
+thumbnailImg: "/assets/img/posts/2026-10-08/Screenshot 2026-10-10 at 09.28.30.png"
 footnotes:
   - "Death Stranding, Death Stranding Director's Cut, Death Stranding 2: On The Beach: &copy; KOJIMA PRODUCTIONS Co., Ltd. Published by Sony Interactive Entertainment LLC."
   - "Excerpts and concept art from Selections from \"The Art of DEATH STRANDING\" Digital Book (Steam Edition) &copy; KOJIMA PRODUCTIONS Co., Ltd. / Sony Interactive Entertainment LLC. PC version published by 505 Games. Published in association with Titan Books."
   - "Severance: &copy; Apple Inc. / Red Hour Productions / Fifth Season. Streaming on Apple TV."
   - "The Last of Us™ Part II Remastered: &copy; Sony Interactive Entertainment LLC. Created and developed by Naughty Dog LLC."
   - "All screenshots and artwork are used under Fair Use for academic discussion, commentary, and non-commercial attribution purposes. All trademarks belong to their respective owners."
-
-# thumbnailImg: /assets/img/posts/platforms/TPAMI.png
 ---
-<!--
- * @Author: Conghao Wong
- * @Date: 2026-10-08 16:11:34
- * @LastEditors: Conghao Wong
- * @LastEditTime: 2026-10-09 21:27:42
- * @Github: https://cocoon2wong.github.io
- * Copyright 2026 Conghao Wong, All Rights Reserved.
--->
 
-### Overview of the Echolocation Trilogy
+import Pill from "@/components/Pill.astro";
+
+### The Echolocation Trilogy
 
 Recently, the last part of our *Echolocation Trilogy*, the journal paper entitled "Reverberation: Learning the Latencies Before Forecasting Trajectories", has been finally accepted by IEEE Transactions on Pattern Analysis and Machine Intelligence.
 As elaborated in the last *Authors' Note* section in its Appendix,
@@ -40,8 +33,17 @@ I have to point out that it is our great pleasure that these papers have been re
 However, these discussions are mostly academic-limited.
 My goal to write this post down is to shine those *untouchable* ideas and thoughts far beyond such echoes.
 
-> [!WARNING]
-> This post is not finished yet. Stay tuned.
+Note that I will not talk about detailed equations or formulation in these papers.
+If you are interested in these papers, click the following buttons to get more information about their technical details:
+
+<Pill
+  hoverable
+  items={[
+    {label: "SocialCircle", href: "https://projectunpredictable.com/SocialCircle"},
+    {label: "Resonance", href: "https://projectunpredictable.com/Re"},
+    {label: "Reverberation", href: "https://projectunpredictable.com/Rev"},
+  ]}
+/>
 
 ### Scan: SocialCircle
 
@@ -87,7 +89,7 @@ Fortunately, it worked, and soon SocialCircle came.
 
 <div style="width: 60%; margin: 0 auto;">
 
-![The First Figure in the SocialCircle Paper](/assets/img/posts/2026-10-08/sc_intro_camera_ready.png)<br>
+![The First Figure in the SocialCircle Paper](/assets/img/posts/2026-10-08/sc_intro_camera_ready.png)<br/>
 *Fig. The First Figure in the SocialCircle Paper. &copy; Conghao Wong.*
 
 </div>
@@ -159,7 +161,7 @@ Exciting the system with signals of different frequencies may directly lead to u
 
 <div style="width: 60%; margin: 0 auto;">
 
-![The First Figure in the Resonance Paper](/assets/img/posts/2026-10-08/re_intro_camera_ready.png)<br>
+![The First Figure in the Resonance Paper](/assets/img/posts/2026-10-08/re_intro_camera_ready.png)<br/>
 *Fig. The First Figure in the Resonance Paper. &copy; Conghao Wong.*
 
 </div>
@@ -201,7 +203,7 @@ My initial thoughts about the *Reverberation* paper and the corresponding model 
 #### Reverberation
 
 The production of the *Reverberation* paper is a bit longer than my previous academic publications.
-Like other TV or movie series, I decided to make it the finale of the echolocation trilogy, and leave it longer time for preparation and refinement.
+Like other TV or movie series, I decided to make it the finale of the echolocation trilogy, and leave it longer time for preparation and refinement as a journal paper.
 Back in October 2024, I started to play The Last of Us Part II, only because I heard that its main storyline happened in Seattle, which I have just visited earlier this year to attend the CVPR 2024 conference to present SocialCircle.
 By then, the *Resonance* paper was not even finished yet.
 My goal for playing this game is just for fun, without any further academic purposes.
@@ -219,14 +221,12 @@ The time required for the intensity of the received sound to decay to a specifie
 The *Reverberation* paper is directly produced upon this specific concept.
 
 <details>
-<summary>
-⚠️ Spoiler Alert (TLOU 2)! Click to view! ⚠️
-</summary>
+<summary>⚠️⚠️⚠️ Spoiler Alert (TLOU 2)! Click to view! ⚠️⚠️⚠️</summary>
 
 Back to the game, The Last of Us Part II tells a not-that family-friendly story.
 This whole game is about the propagation of revenge.
 People always get into heated arguments over which character is good and which is evil.
-From my perspective, what makes its storytelling truly attractive is the past events that were experienced by the two main characters, Ellie and Abby.
+From my perspective, what makes its storytelling truly attractive is the past events that were experienced by the two main characters, Ellie and Abby, separately and simultaneously.
 These events separately propagated across time, intertwined with the lives of their friends, and finally interacted with and intervened in each other.
 
 Focusing on the beginning of all the stories in Part II, i.e., Joel killing Abby's father.
@@ -245,58 +245,56 @@ Before long, Abby finally got Ellie, killing and hurting Ellie's friends, as her
 This moment, multiple echoes resonated, as the final response to the initial peace in both Salt Lake City and Jackson.
 
 This is not the end of the reverberation.
-In 
-
-**This post is not finished yet. Stay tuned.**
+After everything that happened in Seattle, Ellie and Dina decided to move to their own farm.
+Life seemed to go on as usual, with golden wheat stalks swaying gently in the breeze.
+But behind the calm, Ellie's PTSD, Dina's worries, and Tommy's thirst for revenge all intertwined, entangled, and gradually began to take root.
+Something indeed happened, something had been indeed observed.
+However, nobody knows what Ellie will do on the next day.
+These reverberations are totally unpredictable.
 
 ![Ellie Walking in the Farm](</assets/img/posts/2026-10-08/The Last of Us™ Part II Remastered_20241001195146.jpg>)
 *Fig. Ellie Walking in the Farm (In-Game Capture from The Last of Us™ Part II Remastered<sup>4</sup>).*
 
 </details>
 
+Like most people who have experienced this whole storyline of The Last Of Us Part II, I was also shocked by its story, shocked by the final choice made by Ellie.
+I'm not here to judge any of these characters' behaviors.
+Instead, such echo propagation brought me more thoughts than any other games I had played before.
+At that time, I have not officially started to write the *Reverberation* paper, not even started to conduct its code and experiments.
+Rather, this storyline still carries significant weight in this manuscript.
+It was at this point that I strengthened my decision to compose it as a journal paper, so that its valuable content would not be buried in an 8-page or even 6-page-only conference paper.
+
 #### Tomorrow and Today
 
 In addition to The Last of Us Part II, Death Stranding 2 also devotes considerable ink to the relationship between "today" and "tomorrow".
 Specifically, the insurmountable gap between the current "today" and the imagined "tomorrow" is one of the main topics discussed in its main storyline.
 
-**This post is not finished yet. Stay tuned.**
+Corresponding to the "Rope and Stick" quote in the first Death Stranding game, another Kobo Abe's quote appears at the end of all stories in Death Stranding 2:
+
+> Though the future is a product of every present that precedes it, tomorrow does not belong to today.
 
 ![Ending Quote about Tomorrow and Today in Death Stranding 2](</assets/img/posts/2026-10-08/DEATH STRANDING 2_ ON THE BEACH_20260407004517.jpg>)
 *Fig. Ending Quote about Tomorrow and Today in Death Stranding 2 (In-Game Capture from DEATH STRANDING 2: ON THE BEACH).*
 
-<div
-  style="
-    position: relative;
-    display: inline-block;
-    overflow: hidden;
-  "
-  onclick="
-    this.querySelector('img').style.filter='none';
-    this.querySelector('span').remove();
-  "
->
-  <span style="
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 24px;
-    z-index: 2;
-    color: white;
-  ">
-    This image may contain spoilers for Death Stranding 2.
-    Click to view.
-  </span>
-  <img
-    src="/assets/img/posts/2026-10-08/DEATH STRANDING 2_ ON THE BEACH_20260407004917.jpg"
-    alt="alt text"
-    style="filter: blur(150px);"
-  >
-</div>
+After several days playing this game till about three or four o'clock in the morning, I finished the main story and saw this sentence for the very first time in my life.
+I insisted on keeping this sentence as it was in the introduction of the *Reverberation* paper, even though someone still felt it was out of place with the rigid, conventional style expected of top-tier academic publications.
+That was early July 2025.
+By then, the overall network structures of the *Reverberation* model had been settled, and most of the quantitative experiments were also finished.
+However, the qualitative analyses and in-depth discussions were still progressing slowly (in fact, I consider these parts to be the true core of the publication, and these qualitative analyses alone take up at least 20 two-column pages across the entire 18-page main manuscript and the 20-page appendix).
 
+<details>
+<summary>⚠️⚠️⚠️ Spoiler Alert (Death Stranding 2)! Click to view! ⚠️⚠️⚠️</summary>
+
+**This post is not finished yet. Stay tuned.**
+
+As described by this sentence, 
+
+![Tomorrow in Death Stranding 2](</assets/img/posts/2026-10-08/DEATH STRANDING 2_ ON THE BEACH_20260407004917.jpg>)
 *Fig. Tomorrow in Death Stranding 2 (In-Game Capture from DEATH STRANDING 2: ON THE BEACH).*
 
-I don't know whether anyone has found it or not.
+</details>
+
+In addition, I don't know whether anyone has found it or not.
 I have embedded another bad pun in the quote "Though the future is a product of every present that precedes it".
 *Literally*, it describes the *MATRIX PRODUCT* formed in the *Reverberation* paper:
 $$
