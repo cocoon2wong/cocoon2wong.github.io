@@ -7,7 +7,7 @@ showBreadcrumbs: true
  * @Author: Conghao Wong
  * @Date: 2023-03-03 17:45:05
  * @LastEditors: Conghao Wong
- * @LastEditTime: 2026-10-12 11:13:39
+ * @LastEditTime: 2026-10-26 15:33:53
  * @Description: file content
  * @Github: https://cocoon2wong.github.io
  * Copyright 2023 Conghao Wong, All Rights Reserved.
@@ -40,9 +40,8 @@ Project Unpredictable and Conghao Wong issue the following public notice regardi
    Conghao Wong retains the original source files for these materials. No permission, transfer, or license has ever been granted to Beihao Xia to extract, repurpose, or republish these graphical materials in publications outside of mutually co-authored works. Under standard publishing ethics and copyright frameworks (including the IEEE PSPB Operations Manual), incorporating third-party figures or substantial expressions requires prior explicit consent from the respective creator.
 
 3. **Open-Source Compliance and Code Attribution**:
-   The trajectory prediction visualizations presented in Figure 2 of *S3-Net* substantially replicate the design, visual outputs, and pipeline behaviors of the open-source frameworks developed by Conghao Wong (hosted in the public repositories `Project-Qpid` and `Project-Jocker`, available at https://github.com/cocoon2wong/Project-Qpid and https://github.com/cocoon2wong/Project-Jocker). 
+   The trajectory prediction visualizations presented in Figure 2 of *S3-Net* substantially replicate the design, visual outputs, and pipeline behaviors of the open-source frameworks developed by Conghao Wong (hosted in the public repositories `Project-Qpid` and `Project-Jocker`, available at https://github.com/cocoon2wong/Project-Qpid and https://github.com/cocoon2wong/Project-Jocker).
    
    These repositories are strictly licensed under the GNU General Public License v3.0 (GPL v3.0). Under the terms of the GPL v3.0, any distribution or downstream utilization of the covered software or its derivative implementations legally mandates the preservation of original copyright notices, formal attribution, and the reciprocal distribution of corresponding source code under the same license terms. Utilizing these assets without adhering to GPL v3.0 conditions and without scholarly citation constitutes both a license violation and a departure from standard academic citation integrity.
 
-4. **Status and Actions**:
-   Formal inquiries and requests for provenance documentation have been directed to the authors of *S3-Net*. We reserve all rights to pursue appropriate institutional, editorial, and legal avenues to protect our intellectual property, ensure compliance with open-source licenses, and uphold transparency within the scientific community.
+We reserve all rights to pursue appropriate institutional, editorial, and legal avenues to protect our intellectual property, ensure compliance with open-source licenses, and uphold transparency within the scientific community.
