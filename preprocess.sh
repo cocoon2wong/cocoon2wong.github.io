@@ -1,4 +1,12 @@
 #!/bin/sh
+###
+ # @Author: Conghao Wong
+ # @Date: 2026-09-23 18:35:13
+ # @LastEditors: Conghao Wong
+ # @LastEditTime: 2026-10-28 09:52:12
+ # @Github: https://cocoon2wong.github.io
+ # Copyright 2026 Conghao Wong, All Rights Reserved.
+### 
 #
 # Preprocess script for cocoon2wong.github.io (Astro framework)
 # Pulls Project-Zero template engine and merges root-level pages & assets.
@@ -68,6 +76,12 @@ if [ -d "__data" ]; then
   mkdir -p ./src/data
   info "Applying local __data -> src/data"
   cp -Rf "__data"/. "./src/data"/
+fi
+
+if [ -d "__components" ]; then
+  mkdir -p ./src/components
+  info "Applying local __components -> src/components"
+  cp -Rf "__components"/. "./src/components"/
 fi
 
 # ------------------------------------------------------------------------------

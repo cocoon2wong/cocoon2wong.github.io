@@ -1,0 +1,35 @@
+---
+/*
+ * @Author: Conghao Wong
+ * @Date: 2026-10-28 09:53:55
+ * @LastEditors: Conghao Wong
+ * @LastEditTime: 2026-10-28 10:36:53
+ * @Github: https://cocoon2wong.github.io
+ * Copyright 2026 Conghao Wong, All Rights Reserved.
+ */
+
+import LiquidGlass from "./LiquidGlass.astro";
+---
+
+<LiquidGlass hoverable themeColor="#ffffff">
+    <nav class="liquidGlass-item-container">
+        <slot />
+    </nav>
+</LiquidGlass>
+
+<style>
+    :has(.liquidGlass-item-container) {
+        margin-bottom: calc(var(--liquid-glass-radius-outer) - 2px);
+    }
+
+    .liquidGlass-item-container {
+        padding:
+            calc(var(--liquid-glass-radius-outer) / 2 - 3px)
+            calc(var(--liquid-glass-radius-outer));
+    }
+
+    .liquidGlass-item-container :global(p) {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+</style>
